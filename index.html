@@ -6,408 +6,401 @@
     <title>Happy Birthday, Leo!</title>
     <style>
         :root {
-            --gotham-dark: #232d37;
-            --gotham-blue: #3a4754;
-            --kitty-pink: #f5b7b1;
-            --rose-gold: #b38b82;
-            --bg-light: #d1d8e0;
-            --text-dark: #1e272e;
+            --gotham-dark: #1e252c;
+            --gotham-mid: #2d3742;
+            --gotham-blue: #3e4b59;
+            --steel-gray: #c9d1d9;
+            --sky-gradient: linear-gradient(to bottom, #b5c2cd, #dbe3e8);
+            --kitty-pink: #f4b4b9;
+            --rose-gold: #b28a82;
+            --text-light: #ffffff;
+            --text-muted: #a3b0bc;
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background: var(--sky-gradient);
+            color: #333;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            text-align: center;
         }
 
-        /* Top Header Navigation style */
+        /* TOP NAV BANNER */
         header {
             background-color: var(--gotham-dark);
-            color: #ffffff;
-            padding: 20px;
+            color: var(--text-light);
+            padding: 15px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--rose-gold);
             letter-spacing: 2px;
-            border-bottom: 3px solid var(--rose-gold);
+            position: relative;
         }
-
         header h1 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             margin: 0;
             text-transform: uppercase;
+            font-weight: 600;
         }
-
         header p {
-            font-size: 0.9rem;
-            color: var(--kitty-pink);
-            margin: 5px 0 0 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 3px 0 0 0;
         }
+        .constellation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            opacity: 0.5;
+        }
+        .const-left { left: 40px; }
+        .const-right { right: 40px; }
 
-        .main-container {
-            max-width: 1100px;
+        /* MAIN LAYOUT WRAPPER */
+        .website-container {
+            max-width: 1300px;
             margin: 0 auto;
             padding: 40px 20px;
             position: relative;
+            min-height: 800px;
         }
 
-        /* CSS KISSING ICON ARTWORK */
-        .kissing-stage {
+        /* BACKGROUND SKYLINE (Left & Right Sides) */
+        .skyline-bg {
+            position: absolute;
+            bottom: 150px;
+            width: 100%;
+            height: 350px;
+            background-image: url('https://i.imgur.com/u7Y8G2N.png'); /* Replace with a subtle gray city skyline silhouette png */
+            background-repeat: repeat-x;
+            background-position: bottom;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* MAIN HERO GRAPHIC (HELLO KITTY & BATMAN) */
+        .hero-graphic-center {
+            text-align: center;
+            margin: 20px auto 30px auto;
+            position: relative;
+            max-width: 400px;
+        }
+        .hero-graphic-center img {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+        }
+
+        /* RECREATED COUNTDOWN BANNER FROM IMAGES */
+        .countdown-wrapper {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            margin: 30px auto;
-            height: 160px;
-            position: relative;
+            margin: 0 auto 40px auto;
         }
-
-        .character {
-            width: 90px;
-            height: 90px;
-            position: relative;
-        }
-
-        /* Hello Kitty Vector Styling */
-        .kitty {
-            background: #ffffff;
-            border-radius: 50% 50% 45% 45%;
-            border: 3px solid #000;
-            position: relative;
-        }
-        .kitty::before, .kitty::after { /* Ears */
-            content: '';
-            position: absolute;
-            top: -8px;
-            width: 0; height: 0;
-            border-left: 12px solid transparent;
-            border-right: 12px solid transparent;
-            border-bottom: 20px solid #ffffff;
-        }
-        .kitty::before { left: 4px; transform: rotate(-30deg); }
-        .kitty::after { right: 4px; transform: rotate(30deg); }
-        
-        .kitty .bow {
-            position: absolute;
-            top: 2px; right: 8px;
-            width: 14px; height: 14px;
-            background: var(--kitty-pink);
-            border-radius: 50%;
-            border: 2px solid #000;
-            z-index: 2;
-        }
-        .kitty .eyes {
-            position: absolute;
-            top: 45px; right: 15px;
-            width: 6px; height: 8px;
-            background: #000;
-            border-radius: 50%;
-        }
-
-        /* Batman Vector Styling */
-        .batman {
-            background: #1e272e;
-            border-radius: 50% 50% 45% 45%;
-            border: 3px solid #000;
-        }
-        .batman::before, .batman::after { /* Cowl Ears */
-            content: '';
-            position: absolute;
-            top: -12px;
-            width: 0; height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-bottom: 25px solid #1e272e;
-        }
-        .batman::before { left: 10px; transform: rotate(-10deg); }
-        .batman::after { right: 10px; transform: rotate(10deg); }
-
-        .batman .logo {
-            position: absolute;
-            bottom: 15px; left: 30px;
-            width: 30px; height: 12px;
-            background: #f1c40f;
-            border-radius: 3px;
-            border: 1px solid #000;
-        }
-        .batman .eye-slit {
-            position: absolute;
-            top: 40px; left: 15px;
-            width: 14px; height: 6px;
-            background: #fff;
-            transform: rotate(10deg);
-            border-radius: 2px;
-        }
-
-        /* Floating Hearts around them */
-        .love-hearts {
-            position: absolute;
-            font-size: 1.5rem;
-            color: #e74c3c;
-            animation: floatUp 2.5s infinite ease-in-out;
-        }
-
-        /* STYLIZED COUNTDOWN BLOCK */
-        .countdown-box {
+        .countdown-banner {
             background-color: var(--gotham-dark);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
+            border: 2px solid var(--gotham-blue);
+            border-radius: 6px;
+            padding: 8px 20px;
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            margin-bottom: 40px;
+            gap: 12px;
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            letter-spacing: 1px;
         }
-        .time-block {
-            background: var(--rose-gold);
-            padding: 5px 10px;
-            border-radius: 4px;
+        .count-block {
+            background-color: var(--rose-gold);
             color: var(--gotham-dark);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            min-width: 24px;
+            display: inline-block;
+            text-align: center;
         }
 
-        /* SCRAPBOOK AND POLAROIDS WITH BOWS */
-        .memories-title {
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* OUR FAV MEMORIES SECTION */
+        .memories-section {
+            position: relative;
             margin-top: 20px;
-            color: var(--gotham-dark);
         }
-        .scrapbook-grid {
+        .section-title {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gotham-dark);
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+        
+        /* SCATTERED & ASYMMETRICAL POLAROID GRID */
+        .memories-grid {
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 25px;
-            margin-top: 30px;
+            gap: 20px;
+            position: relative;
         }
         .polaroid {
-            background: white;
-            padding: 15px 15px 30px 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            border-radius: 2px;
-            width: 240px;
+            background: #ffffff;
+            padding: 12px 12px 25px 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            width: 200px;
             position: relative;
-            transform: rotate(-1.5deg);
             transition: transform 0.3s;
         }
-        .polaroid:nth-child(even) { transform: rotate(2deg); }
-        .polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 5; }
-        
         .polaroid img {
             width: 100%;
-            height: 220px;
+            height: 180px;
             object-fit: cover;
         }
         .polaroid-caption {
             font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 12px;
+            color: #333;
             text-transform: uppercase;
+            line-height: 1.2;
         }
-        /* Tiny accent bow styling on pictures */
-        .photo-bow {
+        
+        /* Positioning variations matching the custom image */
+        .p1 { transform: rotate(-6deg) translateY(15px); }
+        .p2 { transform: rotate(3deg) scale(0.85) translateY(40px); } /* Smaller helper snapshot */
+        .p3 { transform: rotate(-2deg) translateY(-10px); width: 210px;}
+        .p4 { transform: rotate(4deg) translateY(5px); }
+        .p5 { transform: rotate(-3deg) translateY(10px); }
+
+        /* Hello Kitty bow attached to picture frames */
+        .kitty-bow-accent {
             position: absolute;
-            top: -10px; right: -10px;
-            background: var(--kitty-pink);
-            border: 2px solid #000;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-size: 10px;
+            top: -8px;
+            right: -8px;
+            font-size: 18px;
+            z-index: 2;
+            cursor: default;
         }
 
-        /* INTERACTIVE MESSAGE BOARD BUTTON */
-        .board-btn {
-            background-color: var(--gotham-blue);
-            color: white;
-            border: 2px solid var(--rose-gold);
-            padding: 12px 30px;
-            font-size: 1rem;
+        /* MESSAGE BOARD SECTION */
+        .message-board-container {
+            background-color: var(--gotham-mid);
+            border-top: 2px solid var(--rose-gold);
+            padding: 25px 20px;
+            margin-top: 80px;
+            color: var(--text-light);
+        }
+        .board-title {
+            font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 4px;
-            margin-top: 40px;
-            transition: 0.3s;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: var(--text-muted);
         }
-        .board-btn:hover {
-            background-color: var(--rose-gold);
+        .ticker-messages {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .message-bubble {
+            background-color: transparent;
+            border: 1px solid var(--gotham-blue);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+        }
+        .bubble-bow {
+            position: absolute;
+            bottom: -8px;
+            right: 15px;
+            font-size: 11px;
+        }
+
+        /* CONTACT FOOTER */
+        footer {
+            background-color: var(--gotham-dark);
+            padding: 30px 20px;
+            color: var(--text-light);
+            border-top: 1px solid #2d3742;
+        }
+        footer h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        .contact-form-mini {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact-form-mini input {
+            background: #252f3a;
+            border: 1px solid var(--gotham-blue);
+            padding: 8px 12px;
             color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            flex: 1;
         }
-        .hidden-letter {
-            display: none;
-            background: #ffffff;
-            border: 2px solid var(--gotham-dark);
-            max-width: 600px;
-            margin: 20px auto 0 auto;
-            padding: 30px;
-            text-align: left;
-            border-radius: 6px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        /* BACKGROUND FLOATING DECORATIONS (Decorative Canvas) */
-        #deco-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+        
+        /* DECORATIVE FLOATING ICONS IN BACKGROUND */
+        .ambient-icon {
+            position: absolute;
+            opacity: 0.6;
             pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(10px); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(-40px); opacity: 0; }
+            z-index: 0;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
 
-    <canvas id="deco-canvas"></canvas>
-
+    <!-- HEADER NAVIGATION -->
     <header>
-        <h1>Happy Birthday, Leo! 🦇🎀</h1>
+        <div class="constellation const-left">✨✨</div>
+        <h1>Happy Birthday, Leo!</h1>
         <p>JUNE 20TH - OUR SPECIAL DAY</p>
+        <div class="constellation const-right">✨✨</div>
     </header>
 
-    <div class="main-container">
+    <div class="skyline-bg"></div>
 
-        <!-- KISSING HELLO KITTY & BATMAN VECTOR -->
-        <div class="kissing-stage">
-            <div class="character kitty">
-                <div class="bow"></div>
-                <div class="eyes"></div>
-            </div>
-            <div class="character batman">
-                <div class="eye-slit"></div>
-                <div class="logo"></div>
-            </div>
-            <div class="love-hearts" style="left:48%; top:20px;">❤️</div>
+    <div class="website-container">
+
+        <!-- FLOATING AMBIENT ICONS (Matching the scattered icons on sides) -->
+        <div class="ambient-icon" style="top: 120px; left: 5%; transform: rotate(-15deg);">🦇</div>
+        <div class="ambient-icon" style="top: 220px; left: 12%; transform: rotate(10deg);">🦇</div>
+        <div class="ambient-icon" style="top: 380px; left: 4%; transform: rotate(-20deg);">🐱</div>
+        <div class="ambient-icon" style="top: 140px; right: 6%; transform: rotate(25deg);">🦇</div>
+        <div class="ambient-icon" style="top: 250px; right: 15%; transform: rotate(-10deg);">🦇</div>
+        <div class="ambient-icon" style="top: 420px; right: 8%; transform: rotate(15deg);">🦇</div>
+        <div class="ambient-icon" style="top: 480px; right: 18%; transform: rotate(-5deg);">🎀</div>
+
+        <!-- MAIN HERO IMAGE BLOCK -->
+        <div class="hero-graphic-center">
+            <!-- Replace the src with your own custom URL of Hello Kitty & Batman if desired -->
+            <img src="https://i.imgur.com/Wv9N7g9.png" alt="Hello Kitty and Batman Kissing Graphic">
         </div>
 
-        <!-- THE COUNTDOWN BLOCK -->
-        <div class="countdown-box">
-            <span id="day-val" class="time-block">00</span> DAYS LEFT :
-            <span id="hr-val" class="time-block">00</span> HOURS LEFT
-        </div>
-
-        <!-- MEMORY LANE -->
-        <h2 class="memories-title">Our Fav Memories ✨</h2>
-        <div class="scrapbook-grid">
-            <div class="polaroid">
-                <div class="photo-bow">🎀</div>
-                <img src="https://via.placeholder.com/240x220?text=Our+Adventure" alt="Memory 1">
-                <div class="polaroid-caption">Our first trip to the coast - Summer '25</div>
-            </div>
-            <div class="polaroid">
-                <div class="photo-bow">🎀</div>
-                <img src="https://via.placeholder.com/240x220?text=Laughs" alt="Memory 2">
-                <div class="polaroid-caption">Laughing till it hurt at the comedy show</div>
-            </div>
-            <div class="polaroid">
-                <div class="photo-bow">🎀</div>
-                <img src="https://via.placeholder.com/240x220?text=Us" alt="Memory 3">
-                <div class="polaroid-caption">The day we met Luna</div>
+        <!-- COUNTDOWN TIMER BLOCK -->
+        <div class="countdown-wrapper">
+            <div class="countdown-banner">
+                <span id="days-box" class="count-block">03</span> DAYS LEFT
+                <span>:</span>
+                <span id="hours-box" class="count-block">14</span> HOURS LEFT
+                <span>:</span>
+                <span id="mins-box" class="count-block">14</span> MINS LEFT
             </div>
         </div>
 
-        <!-- SPECIAL MESSAGE BOARD -->
-        <div style="margin-top: 60px;">
-            <button class="board-btn" onclick="toggleLetter()">Open on your Birthday</button>
-            <div class="hidden-letter" id="birthday-letter">
-                <h3>To My Favorite Person,</h3>
-                <p>I wanted to create something completely custom and unique to reflect us. You are the Batman to my Hello Kitty, and I love every single adventure we go on together.</p>
-                <p>Thank you for being the most loving, wonderful boyfriend. May this year bring you closer to everything you dream of achieving!</p>
-                <p><strong>Happy Birthday! ❤️</strong></p>
+        <!-- MEMORIES PHOTO GALLERY -->
+        <div class="memories-section">
+            <div class="section-title">✨ Our Favorite Memories ✨</div>
+            
+            <div class="memories-grid">
+                
+                <!-- Photo 1 -->
+                <div class="polaroid p1">
+                    <div class="kitty-bow-accent">🎀</div>
+                    <img src="https://via.placeholder.com/200x180" alt="Memory 1">
+                    <div class="polaroid-caption">Our first trip to the coast - Summer '25</div>
+                </div>
+
+                <!-- Photo 2 (Smaller side accent snapshot) -->
+                <div class="polaroid p2">
+                    <div class="kitty-bow-accent">🎀</div>
+                    <img src="https://via.placeholder.com/200x180" alt="Memory 2">
+                    <div class="polaroid-caption">Silly Moments 🤍</div>
+                </div>
+
+                <!-- Photo 3 (Center stage focus photo) -->
+                <div class="polaroid p3">
+                    <div class="kitty-bow-accent">🎀</div>
+                    <img src="https://via.placeholder.com/200x180" alt="Memory 3">
+                    <div class="polaroid-caption">Laughing till it hurt at the comedy show</div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="polaroid p4">
+                    <div class="kitty-bow-accent">🎀</div>
+                    <img src="https://via.placeholder.com/200x180" alt="Memory 4">
+                    <div class="polaroid-caption">The day we met Luna</div>
+                </div>
+
             </div>
         </div>
 
     </div>
 
+    <!-- LOWER MESSAGE BOARD COMPONENT -->
+    <div class="message-board-container">
+        <div class="board-title">Message Board</div>
+        <div class="ticker-messages">
+            <div class="message-bubble">
+                Can't wait to celebrate with you!
+                <span class="bubble-bow">🎀</span>
+            </div>
+            <div class="message-bubble">
+                HBD to the best guy!
+                <span class="bubble-bow">🎀</span>
+            </div>
+            <div class="message-bubble">
+                So proud of you, Leo!
+                <span class="bubble-bow">🎀</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT FOOTER MODULE -->
+    <footer>
+        <h3>Contact Me</h3>
+        <div class="contact-form-mini">
+            <input type="text" placeholder="Name" disabled>
+            <input type="email" placeholder="Email" disabled>
+        </div>
+    </footer>
+
+    <!-- DYNAMIC TIMER LOGIC -->
     <script>
-        // COUNTDOWN SCRIPT TARGETING JUNE 20
-        function runCountdown() {
+        function updateTimer() {
             const now = new Date();
             const year = now.getFullYear();
-            let target = new Date(`June 20, ${year} 00:00:00`);
-
-            if (now > target) {
-                target = new Date(`June 20, ${year + 1} 00:00:00`);
+            // Target June 20th
+            let targetDate = new Date(`June 20, ${year} 00:00:00`);
+            
+            if (now > targetDate) {
+                targetDate = new Date(`June 20, ${year + 1} 00:00:00`);
             }
 
-            const diff = target - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const difference = targetDate - now;
 
-            if (diff <= 0 || (now.getMonth() === 5 && now.getDate() === 20)) {
-                document.querySelector('.countdown-box').innerHTML = "🎉 HAPPY BIRTHDAY, LEO! 🎉";
-            } else {
-                document.getElementById('day-val').innerText = days.toString().padStart(2, '0');
-                document.getElementById('hr-val').innerText = hours.toString().padStart(2, '0');
-            }
-        }
-        setInterval(runCountdown, 1000);
-        runCountdown();
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
 
-        // MESSAGE REVEAL
-        function toggleLetter() {
-            const letter = document.getElementById('birthday-letter');
-            if (letter.style.display === 'block') {
-                letter.style.display = 'none';
-            } else {
-                letter.style.display = 'block';
-                letter.scrollIntoView({ behavior: 'smooth' });
-            }
+            // Set content matching structure exactly
+            document.getElementById('days-box').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours-box').innerText = h.toString().padStart(2, '0');
+            document.getElementById('mins-box').innerText = m.toString().padStart(2, '0');
         }
 
-        // BACKGROUND ANIMATION (FLOATING BATS AND BOWS)
-        const canvas = document.getElementById('deco-canvas');
-        const ctx = canvas.getContext('2d');
-        let shapes = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class FallingShape {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = canvas.height + 20;
-                this.type = Math.random() > 0.5 ? 'bat' : 'bow';
-                this.size = Math.random() * 12 + 10;
-                this.speedY = -(Math.random() * 1.5 + 0.5);
-                this.drift = Math.sin(Math.random() * 2);
-            }
-            draw() {
-                ctx.fillStyle = this.type === 'bat' ? '#232d37' : '#f5b7b1';
-                ctx.font = `${this.size}px serif`;
-                ctx.fillText(this.type === 'bat' ? '🦇' : '🎀', this.x, this.y);
-            }
-            update() {
-                this.y += this.speedY;
-                this.x += Math.sin(this.y / 30) * 0.5;
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (shapes.length < 30 && Math.random() < 0.05) {
-                shapes.push(new FallingShape());
-            }
-            shapes.forEach((s, idx) => {
-                s.update();
-                s.draw();
-                if (s.y < -20) shapes.splice(idx, 1);
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
+        setInterval(updateTimer, 60000);
+        updateTimer();
     </script>
 </body>
 </html>
