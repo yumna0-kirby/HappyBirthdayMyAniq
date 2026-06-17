@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,45 +30,71 @@
             align-items: center;
             overflow: hidden;
             padding: 20px;
+            position: relative;
+        }
+
+        /* Gotham Skyline Background Effect */
+        body::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,20 L0,10 L5,10 L5,5 L10,5 L10,12 L15,12 L15,2 L25,2 L25,15 L30,15 L30,8 L40,8 L40,18 L45,18 L45,4 L55,4 L55,12 L60,12 L60,7 L70,7 L70,15 L75,15 L75,3 L85,3 L85,13 L90,13 L90,9 L100,9 L100,20 Z" fill="%23050505"/></svg>');
+            background-size: 100% 100%;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 1;
         }
 
         /* Main Container */
         .card-container {
-            background: rgba(17, 17, 17, 0.9);
+            background: rgba(17, 17, 17, 0.85);
             border: 4px solid var(--bat-yellow);
             border-radius: 20px;
-            box-shadow: 0 0 30px rgba(253, 224, 71, 0.4), 0 0 30px rgba(255, 105, 180, 0.5);
-            max-width: 550px;
+            box-shadow: 0 0 30px rgba(253, 224, 71, 0.3), 0 0 30px rgba(255, 105, 180, 0.4);
+            max-width: 600px;
             width: 100%;
             padding: 40px;
             text-align: center;
             position: relative;
             backdrop-filter: blur(10px);
-            z-index: 10;
-            animation: containerPulse 4s ease-in-out infinite alternate;
+            z-index: 5;
+            animation: cardGlow 4s ease-in-out infinite alternate;
         }
 
-        @keyframes containerPulse {
-            0% { transform: scale(1); box-shadow: 0 0 30px rgba(253, 224, 71, 0.4); }
-            100% { transform: scale(1.02); box-shadow: 0 0 40px rgba(255, 105, 180, 0.6); }
+        @keyframes cardGlow {
+            0% { box-shadow: 0 0 20px rgba(253, 224, 71, 0.2); }
+            100% { box-shadow: 0 0 40px rgba(255, 105, 180, 0.5), 0 0 20px rgba(253, 224, 71, 0.4); }
         }
 
-        .decorations {
-            display: flex;
-            justify-content: space-between;
-            font-size: 3rem;
+        /* Custom Interactive Header Mashup */
+        .mashup-header {
+            position: relative;
+            height: 100px;
             margin-bottom: 20px;
-            animation: bounce 2s infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .center-logo {
+            font-size: 3.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            user-select: none;
+            filter: drop-shadow(0 0 10px rgba(253, 224, 71, 0.5));
+        }
+
+        .center-logo:hover {
+            transform: scale(1.2) rotate(10deg);
         }
 
         h1 {
             color: var(--bat-yellow);
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -78,12 +103,12 @@
 
         h2 {
             color: var(--kitty-pink);
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 30px;
             font-weight: 400;
         }
 
-        /* Countdown Timer */
+        /* Active Countdown Grid */
         .countdown-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -92,16 +117,31 @@
         }
 
         .time-box {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
             border: 2px solid var(--kitty-dark-pink);
             border-radius: 12px;
             padding: 15px 5px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(transparent, rgba(253, 224, 71, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .time-box:hover {
-            background: rgba(253, 224, 71, 0.1);
+            transform: translateY(-5px);
             border-color: var(--bat-yellow);
+        }
+
+        .time-box:hover::before {
+            opacity: 1;
         }
 
         .time-number {
@@ -109,6 +149,7 @@
             font-weight: bold;
             color: var(--bat-yellow);
             display: block;
+            text-shadow: 0 0 10px rgba(253, 224, 71, 0.3);
         }
 
         .time-label {
@@ -123,15 +164,16 @@
             background: rgba(255, 183, 197, 0.1);
             border-left: 5px solid var(--kitty-dark-pink);
             border-right: 5px solid var(--bat-yellow);
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             margin-top: 30px;
             color: var(--text-light);
             line-height: 1.6;
             font-size: 1.05rem;
+            position: relative;
         }
 
-        /* Dynamic Surprise Button */
+        /* Dynamic Action Button */
         .surprise-btn {
             background: linear-gradient(45deg, var(--kitty-dark-pink), var(--bat-yellow));
             color: var(--bat-black);
@@ -143,192 +185,174 @@
             cursor: pointer;
             margin-top: 30px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .surprise-btn:hover {
-            transform: scale(1.1) rotate(-2deg);
-            box-shadow: 0 0 25px var(--bat-yellow);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 25px var(--bat-yellow), 0 0 15px var(--kitty-dark-pink);
         }
 
-        /* Pop-up Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px);
+        .surprise-btn:active {
+            transform: scale(0.98);
         }
 
-        .modal-content {
-            background: var(--bat-black);
-            border: 4px solid var(--kitty-dark-pink);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 450px;
-            color: white;
-            position: relative;
-            box-shadow: 0 0 50px var(--kitty-dark-pink);
-            transform: scale(0.7);
-            transition: all 0.3s ease;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px; right: 20px;
-            font-size: 1.5rem;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Floating elements animation canvas */
-        #animation-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
-
+        /* Floating particles styling */
         .floating-item {
             position: absolute;
             bottom: -50px;
-            font-size: 2.5rem;
-            animation: floatUp 4s linear forwards;
+            pointer-events: none;
+            z-index: 2;
+            animation: floatUp 6s linear forwards;
+            font-size: 2rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-105vh) translateX(var(--random-x, 50px)) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-50vh) translateX(50px) rotate(180deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-110vh) translateX(-20px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div id="animation-canvas"></div>
-
     <div class="card-container">
-        <div class="decorations">
-            <span>🎀</span>
-            <span>🦇</span>
+        <div class="mashup-header">
+            <div class="center-logo" id="logo" onclick="toggleLogo()">🦇</div>
         </div>
         
         <h1>Happy Birthday, Aniq!</h1>
-        <h2>To My Favorite Batman & Hello Kitty Mashup 💖</h2>
+        <h2>My Favorite Batman & Hello Kitty Mashup 💖</h2>
 
         <div class="countdown-container">
-            <div class="time-box"><span class="time-number" id="days">00</span><span class="time-label">Days</span></div>
-            <div class="time-box"><span class="time-number" id="hours">00</span><span class="time-label">Hours</span></div>
-            <div class="time-box"><span class="time-number" id="minutes">00</span><span class="time-label">Mins</span></div>
-            <div class="time-box"><span class="time-number" id="seconds">00</span><span class="time-label">Secs</span></div>
+            <div class="time-box">
+                <span class="time-number" id="days">00</span>
+                <span class="time-label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label">Mins</span>
+            </div>
+            <div class="time-box">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label">Secs</span>
+            </div>
         </div>
 
-        <div class="message-box">
-            "To the boy who protects my heart like Batman protects Gotham, but is secretively as cute and soft as Hello Kitty. Count down the moments with me!"
+        <div class="message-box" id="message-container">
+            "To the hero who protects my heart like Batman protects Gotham, but is as soft and lovable as Hello Kitty. Click the logo or the action button below for a surprise!"
         </div>
 
-        <button class="surprise-btn" onclick="triggerSurprise()">Click for a Surprise! ✨</button>
+        <button class="surprise-btn" onclick="triggerSurprise()">Activate Birthday Power! ✨</button>
     </div>
-
-    <div class="modal" id="surpriseModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 style="color: var(--bat-yellow); font-size: 2rem; margin-bottom: 15px;">🦇 Secret Message Unlocked! 🎀</h2>
-            <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 20px;">
-                Aniq, you're the hero I always needed. Have an absolutely amazing birthday on June 20th! I love you to Gotham and back! 💖💫
-            </p>
-            <div style="font-size: 3rem;">🎂✨🎁</div>
-        </div>
-    </div>
-
-    <audio id="birthdayMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-    </audio>
 
     <script>
-        // Automatic Year Adjuster & Countdown Setup
+        // Target Date: June 20th
         const currentYear = new Date().getFullYear();
         let targetDate = new Date(`June 20, ${currentYear} 00:00:00`).getTime();
         
-        // If June 20th passed this year, automatically count down to next year's June 20th
+        // If June 20th has already passed this year, countdown to next year
         if (new Date().getTime() > targetDate) {
             targetDate = new Date(`June 20, ${currentYear + 1} 00:00:00`).getTime();
         }
 
-        const timer = setInterval(() => {
+        // Live Countdown Functionality
+        function updateCountdown() {
             const now = new Date().getTime();
             const difference = targetDate - now;
 
             const d = Math.floor(difference / (1000 * 60 * 60 * 24));
             const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((difference % (1000 * 60)) / (1000));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
 
-            document.getElementById('days').innerHTML = d < 10 ? '0' + d : d;
-            document.getElementById('hours').innerHTML = h < 10 ? '0' + h : h;
-            document.getElementById('minutes').innerHTML = m < 10 ? '0' + m : m;
-            document.getElementById('seconds').innerHTML = s < 10 ? '0' + s : s;
+            document.getElementById('days').innerText = d < 10 ? '0' + d : d;
+            document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
 
-            if (difference < 0) {
-                clearInterval(timer);
-                document.querySelector('h1').innerText = "IT'S YOUR BIRTHDAY ANIQ! 🎉";
+        // Logo click interactive switch
+        function toggleLogo() {
+            const logo = document.getElementById('logo');
+            if (logo.innerText === '🦇') {
+                logo.innerText = '🎀';
+                spawnParticles('🎀', 5);
+            } else {
+                logo.innerText = '🦇';
+                spawnParticles('🦇', 5);
             }
-        }, 1000);
-
-        // Active background floaters loop
-        const canvas = document.getElementById('animation-canvas');
-        const emojis = ['🎀', '🦇', '💖', '⭐', '🐱', '🕶️'];
-
-        function createFloatingEmoji(customLeft = null) {
-            const element = document.createElement('div');
-            element.classList.add('floating-item');
-            element.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-            
-            // Random styling layouts
-            element.style.left = customLeft || (Math.random() * 100) + 'vw';
-            element.style.setProperty('--random-x', (Math.random() * 200 - 100) + 'px');
-            element.style.animationDuration = (Math.random() * 2 + 3) + 's'; 
-            element.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
-
-            canvas.appendChild(element);
-
-            setTimeout(() => { element.remove(); }, 5000);
         }
 
-        // Keep generating a soft stream of emojis passive style
-        setInterval(() => createFloatingEmoji(), 400);
+        // Active Element Spawner (Floating Kitty & Batman items)
+        function spawnParticles(emoji, count) {
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('floating-item');
+                particle.innerText = emoji;
+                
+                // Randomizing horizontal position, animation speed, and sizing
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's'; 
+                particle.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+                
+                document.body.appendChild(particle);
 
-        // Surprise Button Logic
-        function triggerSurprise() {
-            // 1. Open active modal hidden compartment
-            document.getElementById('surpriseModal').classList.add('active');
-            
-            // 2. Play Background Audio tracks dynamically 
-            const audio = document.getElementById('birthdayMusic');
-            audio.play().catch(e => console.log("Audio waiting for explicit page tap interact event"));
-
-            // 3. Explode the screen with emojis simultaneously!
-            for (let i = 0; i < 40; i++) {
+                // Clear DOM after finish
                 setTimeout(() => {
-                    createFloatingEmoji((Math.random() * 100) + 'vw');
-                }, i * 50);
+                    particle.remove();
+                }, 6000);
             }
         }
 
-        function closeModal() {
-            document.getElementById('surpriseModal').classList.remove('active');
+        // Ambient background activity (Subtle random spawns)
+        setInterval(() => {
+            const items = ['🦇', '🎀', '🖤', '🌸', '🎂'];
+            const randomItem = items[Math.floor(Math.random() * items.length)];
+            spawnParticles(randomItem, 1);
+        }, 1500);
+
+        // Main Surprise Click Action
+        const specialMessages = [
+            "Aniq, you're the Dark Knight to my pink aesthetic! 🖤🌸",
+            "Gotham is safe, but my heart is taken by you! 🥰",
+            "Sending you endless hugs, bows, and batarangs! 🎀🦇",
+            "Counting down every second until we celebrate YOU! 🎉"
+        ];
+        let currentMsgIndex = 0;
+
+        function triggerSurprise() {
+            // Burst particles
+            spawnParticles('🦇', 8);
+            spawnParticles('🎀', 8);
+            spawnParticles('🎉', 5);
+
+            // Change messaging interactively on click
+            const msgBox = document.getElementById('message-container');
+            msgBox.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                msgBox.innerText = `"${specialMessages[currentMsgIndex]}"`;
+                msgBox.style.transform = 'scale(1)';
+                currentMsgIndex = (currentMsgIndex + 1) % specialMessages.length;
+            }, 1500;
         }
     </script>
 </body>
