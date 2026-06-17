@@ -3,312 +3,408 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
+    <title>Happy Birthday, Leo!</title>
     <style>
         :root {
-            --primary-color: #ff6b81;
-            --secondary-color: #f7d794;
-            --background-color: #fff5f5;
-            --text-color: #2f3542;
+            --gotham-dark: #232d37;
+            --gotham-blue: #3a4754;
+            --kitty-pink: #f5b7b1;
+            --rose-gold: #b38b82;
+            --bg-light: #d1d8e0;
+            --text-dark: #1e272e;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             margin: 0;
             padding: 0;
             overflow-x: hidden;
             text-align: center;
         }
 
+        /* Top Header Navigation style */
         header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 60px 20px;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background-color: var(--gotham-dark);
+            color: #ffffff;
+            padding: 20px;
+            letter-spacing: 2px;
+            border-bottom: 3px solid var(--rose-gold);
         }
 
-        h1 {
-            font-size: 3rem;
+        header h1 {
+            font-size: 1.8rem;
             margin: 0;
-            animation: bounce 2s infinite;
+            text-transform: uppercase;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-top: 10px;
+        header p {
+            font-size: 0.9rem;
+            color: var(--kitty-pink);
+            margin: 5px 0 0 0;
         }
 
-        .container {
-            max-width: 800px;
+        .main-container {
+            max-width: 1100px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative;
         }
 
-        /* Countdown Style */
-        .countdown-section {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
-        }
-
-        .countdown-display {
+        /* CSS KISSING ICON ARTWORK */
+        .kissing-stage {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            align-items: center;
+            gap: 10px;
+            margin: 30px auto;
+            height: 160px;
+            position: relative;
+        }
+
+        .character {
+            width: 90px;
+            height: 90px;
+            position: relative;
+        }
+
+        /* Hello Kitty Vector Styling */
+        .kitty {
+            background: #ffffff;
+            border-radius: 50% 50% 45% 45%;
+            border: 3px solid #000;
+            position: relative;
+        }
+        .kitty::before, .kitty::after { /* Ears */
+            content: '';
+            position: absolute;
+            top: -8px;
+            width: 0; height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 20px solid #ffffff;
+        }
+        .kitty::before { left: 4px; transform: rotate(-30deg); }
+        .kitty::after { right: 4px; transform: rotate(30deg); }
+        
+        .kitty .bow {
+            position: absolute;
+            top: 2px; right: 8px;
+            width: 14px; height: 14px;
+            background: var(--kitty-pink);
+            border-radius: 50%;
+            border: 2px solid #000;
+            z-index: 2;
+        }
+        .kitty .eyes {
+            position: absolute;
+            top: 45px; right: 15px;
+            width: 6px; height: 8px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        /* Batman Vector Styling */
+        .batman {
+            background: #1e272e;
+            border-radius: 50% 50% 45% 45%;
+            border: 3px solid #000;
+        }
+        .batman::before, .batman::after { /* Cowl Ears */
+            content: '';
+            position: absolute;
+            top: -12px;
+            width: 0; height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 25px solid #1e272e;
+        }
+        .batman::before { left: 10px; transform: rotate(-10deg); }
+        .batman::after { right: 10px; transform: rotate(10deg); }
+
+        .batman .logo {
+            position: absolute;
+            bottom: 15px; left: 30px;
+            width: 30px; height: 12px;
+            background: #f1c40f;
+            border-radius: 3px;
+            border: 1px solid #000;
+        }
+        .batman .eye-slit {
+            position: absolute;
+            top: 40px; left: 15px;
+            width: 14px; height: 6px;
+            background: #fff;
+            transform: rotate(10deg);
+            border-radius: 2px;
+        }
+
+        /* Floating Hearts around them */
+        .love-hearts {
+            position: absolute;
             font-size: 1.5rem;
+            color: #e74c3c;
+            animation: floatUp 2.5s infinite ease-in-out;
+        }
+
+        /* STYLIZED COUNTDOWN BLOCK */
+        .countdown-box {
+            background-color: var(--gotham-dark);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
             font-weight: bold;
-            margin-top: 15px;
-            color: var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+        .time-block {
+            background: var(--rose-gold);
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: var(--gotham-dark);
         }
 
-        /* Memory Lane / Scrapbook */
-        .scrapbook {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+        /* SCRAPBOOK AND POLAROIDS WITH BOWS */
+        .memories-title {
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-top: 20px;
+            color: var(--gotham-dark);
         }
-
+        .scrapbook-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 30px;
+        }
         .polaroid {
             background: white;
-            padding: 15px;
-            padding-bottom: 25px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-            transition: transform 0.3s ease;
-            border-radius: 4px;
+            padding: 15px 15px 30px 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-radius: 2px;
+            width: 240px;
+            position: relative;
+            transform: rotate(-1.5deg);
+            transition: transform 0.3s;
         }
-
-        .polaroid:nth-child(even) {
-            transform: rotate(3deg);
-        }
-
-        .polaroid:hover {
-            transform: scale(1.05) rotate(0deg);
-            z-index: 10;
-        }
-
+        .polaroid:nth-child(even) { transform: rotate(2deg); }
+        .polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 5; }
+        
         .polaroid img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
-            border: 1px solid #ddd;
         }
-
-        .caption {
-            font-family: 'Courier New', Courier, monospace;
-            margin-top: 15px;
+        .polaroid-caption {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
             font-weight: bold;
-            font-size: 1.1rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+        /* Tiny accent bow styling on pictures */
+        .photo-bow {
+            position: absolute;
+            top: -10px; right: -10px;
+            background: var(--kitty-pink);
+            border: 2px solid #000;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
         }
 
-        /* Letter Section */
-        .letter-box {
-            background: #fffdf6;
-            border-left: 5px solid var(--primary-color);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: left;
-            margin-top: 40px;
-            display: none; /* Hidden until clicked */
-        }
-
-        .btn {
-            background-color: var(--primary-color);
+        /* INTERACTIVE MESSAGE BOARD BUTTON */
+        .board-btn {
+            background-color: var(--gotham-blue);
             color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            border-radius: 25px;
+            border: 2px solid var(--rose-gold);
+            padding: 12px 30px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(255, 107, 129, 0.4);
-            transition: transform 0.2s;
+            border-radius: 4px;
+            margin-top: 40px;
+            transition: 0.3s;
+        }
+        .board-btn:hover {
+            background-color: var(--rose-gold);
+            color: white;
+        }
+        .hidden-letter {
+            display: none;
+            background: #ffffff;
+            border: 2px solid var(--gotham-dark);
+            max-width: 600px;
+            margin: 20px auto 0 auto;
+            padding: 30px;
+            text-align: left;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Floating Hearts Canvas */
-        #hearts-canvas {
+        /* BACKGROUND FLOATING DECORATIONS (Decorative Canvas) */
+        #deco-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 999;
+            z-index: -1;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes floatUp {
+            0% { transform: translateY(10px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-40px); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="hearts-canvas"></canvas>
+    <canvas id="deco-canvas"></canvas>
 
     <header>
-        <h1 id="greeting">Happy Early Birthday! 🎂</h1>
-        <p class="subtitle">To an incredible boyfriend who deserves the world.</p>
+        <h1>Happy Birthday, Leo! 🦇🎀</h1>
+        <p>JUNE 20TH - OUR SPECIAL DAY</p>
     </header>
 
-    <div class="container">
+    <div class="main-container">
 
-        <!-- COUNTDOWN TO JUNE 20 -->
-        <section class="countdown-section">
-            <h2 id="countdown-title">Counting down the moments...</h2>
-            <div class="countdown-display" id="countdown">Loading timer...</div>
-        </section>
-
-        <!-- DIGITAL SCRAPBOOK -->
-        <section>
-            <h2>Our Memory Lane 📸</h2>
-            <p>A few of my favorite moments with you.</p>
-            <div class="scrapbook">
-                <!-- Replace 'placeholder.jpg' with your actual image URLs later! -->
-                <div class="polaroid">
-                    <img src="https://via.placeholder.com/300x300?text=Our+First+Date" alt="Memory 1">
-                    <div class="caption">Where it all started... ❤️</div>
-                </div>
-                <div class="polaroid">
-                    <img src="https://via.placeholder.com/300x300?text=Favorite+Adventure" alt="Memory 2">
-                    <div class="caption">Our best adventure yet 🏔️</div>
-                </div>
-                <div class="polaroid">
-                    <img src="https://via.placeholder.com/300x300?text=Sillying+Around" alt="Memory 3">
-                    <div class="caption">Always making me laugh 😂</div>
-                </div>
+        <!-- KISSING HELLO KITTY & BATMAN VECTOR -->
+        <div class="kissing-stage">
+            <div class="character kitty">
+                <div class="bow"></div>
+                <div class="eyes"></div>
             </div>
-        </section>
+            <div class="character batman">
+                <div class="eye-slit"></div>
+                <div class="logo"></div>
+            </div>
+            <div class="love-hearts" style="left:48%; top:20px;">❤️</div>
+        </div>
 
-        <hr style="border: 0; height: 1px; background: #ddd; margin: 50px 0;">
+        <!-- THE COUNTDOWN BLOCK -->
+        <div class="countdown-box">
+            <span id="day-val" class="time-block">00</span> DAYS LEFT :
+            <span id="hr-val" class="time-block">00</span> HOURS LEFT
+        </div>
 
-        <!-- INTERACTIVE MESSAGE -->
-        <section>
-            <h2>A Special Message For You 👇</h2>
-            <button class="btn" onclick="revealLetter()">Click to open your letter</button>
-            
-            <div class="letter-box" id="birthday-letter">
+        <!-- MEMORY LANE -->
+        <h2 class="memories-title">Our Fav Memories ✨</h2>
+        <div class="scrapbook-grid">
+            <div class="polaroid">
+                <div class="photo-bow">🎀</div>
+                <img src="https://via.placeholder.com/240x220?text=Our+Adventure" alt="Memory 1">
+                <div class="polaroid-caption">Our first trip to the coast - Summer '25</div>
+            </div>
+            <div class="polaroid">
+                <div class="photo-bow">🎀</div>
+                <img src="https://via.placeholder.com/240x220?text=Laughs" alt="Memory 2">
+                <div class="polaroid-caption">Laughing till it hurt at the comedy show</div>
+            </div>
+            <div class="polaroid">
+                <div class="photo-bow">🎀</div>
+                <img src="https://via.placeholder.com/240x220?text=Us" alt="Memory 3">
+                <div class="polaroid-caption">The day we met Luna</div>
+            </div>
+        </div>
+
+        <!-- SPECIAL MESSAGE BOARD -->
+        <div style="margin-top: 60px;">
+            <button class="board-btn" onclick="toggleLetter()">Open on your Birthday</button>
+            <div class="hidden-letter" id="birthday-letter">
                 <h3>To My Favorite Person,</h3>
-                <p>I wanted to create something a little different this year to show you how much you mean to me. You bring so much joy, laughter, and love into my life every single day.</p>
-                <p>Thank you for being my rock, my best friend, and the best boyfriend anyone could ever ask for. I hope this next year brings you closer to all your goals and dreams.</p>
-                <p>I love you to the moon and back. Happy Birthday!</p>
-                <p><strong>Forever & Always, ❤️</strong></p>
+                <p>I wanted to create something completely custom and unique to reflect us. You are the Batman to my Hello Kitty, and I love every single adventure we go on together.</p>
+                <p>Thank you for being the most loving, wonderful boyfriend. May this year bring you closer to everything you dream of achieving!</p>
+                <p><strong>Happy Birthday! ❤️</strong></p>
             </div>
-        </section>
+        </div>
 
     </div>
 
     <script>
-        // COUNTDOWN TIMER CODE
-        function updateCountdown() {
+        // COUNTDOWN SCRIPT TARGETING JUNE 20
+        function runCountdown() {
             const now = new Date();
-            const currentYear = now.getFullYear();
-            // Set target date to June 20th
-            let birthdayTarget = new Date(`June 20, ${currentYear} 00:00:00`);
-            
-            // If June 20th has already passed this year, countdown to next year
-            if (now > birthdayTarget) {
-                birthdayTarget = new Date(`June 20, ${currentYear + 1} 00:00:00`);
+            const year = now.getFullYear();
+            let target = new Date(`June 20, ${year} 00:00:00`);
+
+            if (now > target) {
+                target = new Date(`June 20, ${year + 1} 00:00:00`);
             }
 
-            const difference = birthdayTarget - now;
+            const diff = target - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-            if (difference < 0 || (now.getMonth() === 5 && now.getDate() === 20)) {
-                document.getElementById('countdown').innerHTML = "🎉 IT'S YOUR BIRTHDAY! 🎉";
-                document.getElementById('countdown-title').innerHTML = "The wait is over!";
-                document.getElementById('greeting').innerHTML = "Happy Birthday! 🥳❤️";
+            if (diff <= 0 || (now.getMonth() === 5 && now.getDate() === 20)) {
+                document.querySelector('.countdown-box').innerHTML = "🎉 HAPPY BIRTHDAY, LEO! 🎉";
             } else {
-                document.getElementById('countdown').innerHTML = 
-                    `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+                document.getElementById('day-val').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hr-val').innerText = hours.toString().padStart(2, '0');
             }
         }
-        
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+        setInterval(runCountdown, 1000);
+        runCountdown();
 
-        // REVEAL LETTER FUNCTION
-        function revealLetter() {
+        // MESSAGE REVEAL
+        function toggleLetter() {
             const letter = document.getElementById('birthday-letter');
-            letter.style.display = 'block';
-            letter.scrollIntoView({ behavior: 'smooth' });
-            // Trigger extra burst of hearts
-            for(let i=0; i<20; i++) spawnHeart();
+            if (letter.style.display === 'block') {
+                letter.style.display = 'none';
+            } else {
+                letter.style.display = 'block';
+                letter.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
-        // FLOATING HEARTS EFFECT
-        const canvas = document.getElementById('hearts-canvas');
+        // BACKGROUND ANIMATION (FLOATING BATS AND BOWS)
+        const canvas = document.getElementById('deco-canvas');
         const ctx = canvas.getContext('2d');
-        let hearts = [];
+        let shapes = [];
 
-        function resizeCanvas() {
+        function resize() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        window.addEventListener('resize', resize);
+        resize();
 
-        class Heart {
-            constructor(x, y, size, speedX, speedY) {
-                this.x = x;
-                this.y = y;
-                this.size = size;
-                this.speedX = speedX;
-                this.speedY = speedY;
-                this.opacity = 1;
+        class FallingShape {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 20;
+                this.type = Math.random() > 0.5 ? 'bat' : 'bow';
+                this.size = Math.random() * 12 + 10;
+                this.speedY = -(Math.random() * 1.5 + 0.5);
+                this.drift = Math.sin(Math.random() * 2);
             }
             draw() {
-                ctx.save();
-                ctx.globalAlpha = this.opacity;
-                ctx.fillStyle = '#ff6b81';
-                ctx.beginPath();
-                ctx.moveTo(this.x, this.y);
-                // Draw a heart shape
-                ctx.bezierCurveTo(this.x - this.size / 2, this.y - this.size / 2, this.x - this.size, this.y + this.size / 3, this.x, this.y + this.size);
-                ctx.bezierCurveTo(this.x + this.size, this.y + this.size / 3, this.x + this.size / 2, this.y - this.size / 2, this.x, this.y);
-                ctx.fill();
-                ctx.restore();
+                ctx.fillStyle = this.type === 'bat' ? '#232d37' : '#f5b7b1';
+                ctx.font = `${this.size}px serif`;
+                ctx.fillText(this.type === 'bat' ? '🦇' : '🎀', this.x, this.y);
             }
             update() {
-                this.x += this.speedX;
                 this.y += this.speedY;
-                this.opacity -= 0.005;
+                this.x += Math.sin(this.y / 30) * 0.5;
             }
-        }
-
-        function spawnHeart() {
-            const x = Math.random() * canvas.width;
-            const y = canvas.height + 20;
-            const size = Math.random() * 15 + 10;
-            const speedX = Math.random() * 2 - 1;
-            const speedY = -(Math.random() * 2 + 1);
-            hearts.push(new Heart(x, y, size, speedX, speedY));
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            hearts.forEach((heart, index) => {
-                heart.update();
-                heart.draw();
-                if (heart.opacity <= 0) hearts.splice(index, 1);
+            if (shapes.length < 30 && Math.random() < 0.05) {
+                shapes.push(new FallingShape());
+            }
+            shapes.forEach((s, idx) => {
+                s.update();
+                s.draw();
+                if (s.y < -20) shapes.splice(idx, 1);
             });
-            if (Math.random() < 0.1) spawnHeart();
             requestAnimationFrame(animate);
         }
         animate();
