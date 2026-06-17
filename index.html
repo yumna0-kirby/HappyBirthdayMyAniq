@@ -1,406 +1,335 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday, Leo!</title>
+    <title>Happy Birthday Aniq! 🎀🦇</title>
     <style>
         :root {
-            --gotham-dark: #1e252c;
-            --gotham-mid: #2d3742;
-            --gotham-blue: #3e4b59;
-            --steel-gray: #c9d1d9;
-            --sky-gradient: linear-gradient(to bottom, #b5c2cd, #dbe3e8);
-            --kitty-pink: #f4b4b9;
-            --rose-gold: #b28a82;
-            --text-light: #ffffff;
-            --text-muted: #a3b0bc;
+            --kitty-pink: #FFB7C5;
+            --kitty-dark-pink: #FF69B4;
+            --bat-black: #111111;
+            --bat-yellow: #FDE047;
+            --text-light: #F3F4F6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            background: var(--sky-gradient);
-            color: #333;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* TOP NAV BANNER */
-        header {
-            background-color: var(--gotham-dark);
-            color: var(--text-light);
-            padding: 15px 20px;
-            text-align: center;
-            border-bottom: 2px solid var(--rose-gold);
-            letter-spacing: 2px;
-            position: relative;
-        }
-        header h1 {
-            font-size: 1.4rem;
-            margin: 0;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        header p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin: 3px 0 0 0;
-        }
-        .constellation {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            opacity: 0.5;
-        }
-        .const-left { left: 40px; }
-        .const-right { right: 40px; }
-
-        /* MAIN LAYOUT WRAPPER */
-        .website-container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            min-height: 800px;
-        }
-
-        /* BACKGROUND SKYLINE (Left & Right Sides) */
-        .skyline-bg {
-            position: absolute;
-            bottom: 150px;
-            width: 100%;
-            height: 350px;
-            background-image: url('https://i.imgur.com/u7Y8G2N.png'); /* Replace with a subtle gray city skyline silhouette png */
-            background-repeat: repeat-x;
-            background-position: bottom;
-            opacity: 0.15;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* MAIN HERO GRAPHIC (HELLO KITTY & BATMAN) */
-        .hero-graphic-center {
-            text-align: center;
-            margin: 20px auto 30px auto;
-            position: relative;
-            max-width: 400px;
-        }
-        .hero-graphic-center img {
-            width: 100%;
-            max-width: 320px;
-            height: auto;
-        }
-
-        /* RECREATED COUNTDOWN BANNER FROM IMAGES */
-        .countdown-wrapper {
+            background: linear-gradient(135deg, var(--bat-black) 50%, var(--kitty-pink) 50%);
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0 auto 40px auto;
-        }
-        .countdown-banner {
-            background-color: var(--gotham-dark);
-            border: 2px solid var(--gotham-blue);
-            border-radius: 6px;
-            padding: 8px 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-light);
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            letter-spacing: 1px;
-        }
-        .count-block {
-            background-color: var(--rose-gold);
-            color: var(--gotham-dark);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            min-width: 24px;
-            display: inline-block;
-            text-align: center;
+            overflow: hidden;
+            padding: 20px;
         }
 
-        /* OUR FAV MEMORIES SECTION */
-        .memories-section {
-            position: relative;
-            margin-top: 20px;
-        }
-        .section-title {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gotham-dark);
-            margin-bottom: 30px;
-            font-weight: bold;
-        }
-        
-        /* SCATTERED & ASYMMETRICAL POLAROID GRID */
-        .memories-grid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            position: relative;
-        }
-        .polaroid {
-            background: #ffffff;
-            padding: 12px 12px 25px 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            width: 200px;
-            position: relative;
-            transition: transform 0.3s;
-        }
-        .polaroid img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-        .polaroid-caption {
-            font-family: 'Courier New', monospace;
-            font-size: 0.7rem;
-            font-weight: bold;
-            margin-top: 12px;
-            color: #333;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-        
-        /* Positioning variations matching the custom image */
-        .p1 { transform: rotate(-6deg) translateY(15px); }
-        .p2 { transform: rotate(3deg) scale(0.85) translateY(40px); } /* Smaller helper snapshot */
-        .p3 { transform: rotate(-2deg) translateY(-10px); width: 210px;}
-        .p4 { transform: rotate(4deg) translateY(5px); }
-        .p5 { transform: rotate(-3deg) translateY(10px); }
-
-        /* Hello Kitty bow attached to picture frames */
-        .kitty-bow-accent {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            font-size: 18px;
-            z-index: 2;
-            cursor: default;
-        }
-
-        /* MESSAGE BOARD SECTION */
-        .message-board-container {
-            background-color: var(--gotham-mid);
-            border-top: 2px solid var(--rose-gold);
-            padding: 25px 20px;
-            margin-top: 80px;
-            color: var(--text-light);
-        }
-        .board-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            color: var(--text-muted);
-        }
-        .ticker-messages {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .message-bubble {
-            background-color: transparent;
-            border: 1px solid var(--gotham-blue);
-            padding: 8px 16px;
+        /* Main Container */
+        .card-container {
+            background: rgba(17, 17, 17, 0.9);
+            border: 4px solid var(--bat-yellow);
             border-radius: 20px;
+            box-shadow: 0 0 30px rgba(253, 224, 71, 0.4), 0 0 30px rgba(255, 105, 180, 0.5);
+            max-width: 550px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            animation: containerPulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes containerPulse {
+            0% { transform: scale(1); box-shadow: 0 0 30px rgba(253, 224, 71, 0.4); }
+            100% { transform: scale(1.02); box-shadow: 0 0 40px rgba(255, 105, 180, 0.6); }
+        }
+
+        .decorations {
+            display: flex;
+            justify-content: space-between;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            color: var(--bat-yellow);
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px var(--kitty-dark-pink);
+        }
+
+        h2 {
+            color: var(--kitty-pink);
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid var(--kitty-dark-pink);
+            border-radius: 12px;
+            padding: 15px 5px;
+            transition: all 0.3s ease;
+        }
+
+        .time-box:hover {
+            background: rgba(253, 224, 71, 0.1);
+            border-color: var(--bat-yellow);
+        }
+
+        .time-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--bat-yellow);
+            display: block;
+        }
+
+        .time-label {
             font-size: 0.75rem;
             color: var(--text-light);
-            letter-spacing: 0.5px;
             text-transform: uppercase;
-            position: relative;
-        }
-        .bubble-bow {
-            position: absolute;
-            bottom: -8px;
-            right: 15px;
-            font-size: 11px;
+            letter-spacing: 1px;
         }
 
-        /* CONTACT FOOTER */
-        footer {
-            background-color: var(--gotham-dark);
-            padding: 30px 20px;
+        /* Message Box */
+        .message-box {
+            background: rgba(255, 183, 197, 0.1);
+            border-left: 5px solid var(--kitty-dark-pink);
+            border-right: 5px solid var(--bat-yellow);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
             color: var(--text-light);
-            border-top: 1px solid #2d3742;
+            line-height: 1.6;
+            font-size: 1.05rem;
         }
-        footer h3 {
-            font-size: 0.9rem;
+
+        /* Dynamic Surprise Button */
+        .surprise-btn {
+            background: linear-gradient(45deg, var(--kitty-dark-pink), var(--bat-yellow));
+            color: var(--bat-black);
+            font-weight: bold;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
         }
-        .contact-form-mini {
-            display: flex;
+
+        .surprise-btn:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 0 25px var(--bat-yellow);
+        }
+
+        /* Pop-up Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 100;
             justify-content: center;
-            gap: 10px;
-            max-width: 500px;
-            margin: 0 auto;
+            align-items: center;
+            backdrop-filter: blur(8px);
         }
-        .contact-form-mini input {
-            background: #252f3a;
-            border: 1px solid var(--gotham-blue);
-            padding: 8px 12px;
+
+        .modal-content {
+            background: var(--bat-black);
+            border: 4px solid var(--kitty-dark-pink);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
             color: white;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            flex: 1;
+            position: relative;
+            box-shadow: 0 0 50px var(--kitty-dark-pink);
+            transform: scale(0.7);
+            transition: all 0.3s ease;
         }
-        
-        /* DECORATIVE FLOATING ICONS IN BACKGROUND */
-        .ambient-icon {
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .close-btn {
             position: absolute;
-            opacity: 0.6;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Floating elements animation canvas */
+        #animation-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 0;
-            font-size: 20px;
+            z-index: 5;
+        }
+
+        .floating-item {
+            position: absolute;
+            bottom: -50px;
+            font-size: 2.5rem;
+            animation: floatUp 4s linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-105vh) translateX(var(--random-x, 50px)) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HEADER NAVIGATION -->
-    <header>
-        <div class="constellation const-left">✨✨</div>
-        <h1>Happy Birthday, Leo!</h1>
-        <p>JUNE 20TH - OUR SPECIAL DAY</p>
-        <div class="constellation const-right">✨✨</div>
-    </header>
+    <div id="animation-canvas"></div>
 
-    <div class="skyline-bg"></div>
+    <div class="card-container">
+        <div class="decorations">
+            <span>🎀</span>
+            <span>🦇</span>
+        </div>
+        
+        <h1>Happy Birthday, Aniq!</h1>
+        <h2>To My Favorite Batman & Hello Kitty Mashup 💖</h2>
 
-    <div class="website-container">
-
-        <!-- FLOATING AMBIENT ICONS (Matching the scattered icons on sides) -->
-        <div class="ambient-icon" style="top: 120px; left: 5%; transform: rotate(-15deg);">🦇</div>
-        <div class="ambient-icon" style="top: 220px; left: 12%; transform: rotate(10deg);">🦇</div>
-        <div class="ambient-icon" style="top: 380px; left: 4%; transform: rotate(-20deg);">🐱</div>
-        <div class="ambient-icon" style="top: 140px; right: 6%; transform: rotate(25deg);">🦇</div>
-        <div class="ambient-icon" style="top: 250px; right: 15%; transform: rotate(-10deg);">🦇</div>
-        <div class="ambient-icon" style="top: 420px; right: 8%; transform: rotate(15deg);">🦇</div>
-        <div class="ambient-icon" style="top: 480px; right: 18%; transform: rotate(-5deg);">🎀</div>
-
-        <!-- MAIN HERO IMAGE BLOCK -->
-        <div class="hero-graphic-center">
-            <!-- Replace the src with your own custom URL of Hello Kitty & Batman if desired -->
-            <img src="https://i.imgur.com/Wv9N7g9.png" alt="Hello Kitty and Batman Kissing Graphic">
+        <div class="countdown-container">
+            <div class="time-box"><span class="time-number" id="days">00</span><span class="time-label">Days</span></div>
+            <div class="time-box"><span class="time-number" id="hours">00</span><span class="time-label">Hours</span></div>
+            <div class="time-box"><span class="time-number" id="minutes">00</span><span class="time-label">Mins</span></div>
+            <div class="time-box"><span class="time-number" id="seconds">00</span><span class="time-label">Secs</span></div>
         </div>
 
-        <!-- COUNTDOWN TIMER BLOCK -->
-        <div class="countdown-wrapper">
-            <div class="countdown-banner">
-                <span id="days-box" class="count-block">03</span> DAYS LEFT
-                <span>:</span>
-                <span id="hours-box" class="count-block">14</span> HOURS LEFT
-                <span>:</span>
-                <span id="mins-box" class="count-block">14</span> MINS LEFT
-            </div>
+        <div class="message-box">
+            "To the boy who protects my heart like Batman protects Gotham, but is secretively as cute and soft as Hello Kitty. Count down the moments with me!"
         </div>
 
-        <!-- MEMORIES PHOTO GALLERY -->
-        <div class="memories-section">
-            <div class="section-title">✨ Our Favorite Memories ✨</div>
-            
-            <div class="memories-grid">
-                
-                <!-- Photo 1 -->
-                <div class="polaroid p1">
-                    <div class="kitty-bow-accent">🎀</div>
-                    <img src="https://via.placeholder.com/200x180" alt="Memory 1">
-                    <div class="polaroid-caption">Our first trip to the coast - Summer '25</div>
-                </div>
-
-                <!-- Photo 2 (Smaller side accent snapshot) -->
-                <div class="polaroid p2">
-                    <div class="kitty-bow-accent">🎀</div>
-                    <img src="https://via.placeholder.com/200x180" alt="Memory 2">
-                    <div class="polaroid-caption">Silly Moments 🤍</div>
-                </div>
-
-                <!-- Photo 3 (Center stage focus photo) -->
-                <div class="polaroid p3">
-                    <div class="kitty-bow-accent">🎀</div>
-                    <img src="https://via.placeholder.com/200x180" alt="Memory 3">
-                    <div class="polaroid-caption">Laughing till it hurt at the comedy show</div>
-                </div>
-
-                <!-- Photo 4 -->
-                <div class="polaroid p4">
-                    <div class="kitty-bow-accent">🎀</div>
-                    <img src="https://via.placeholder.com/200x180" alt="Memory 4">
-                    <div class="polaroid-caption">The day we met Luna</div>
-                </div>
-
-            </div>
-        </div>
-
+        <button class="surprise-btn" onclick="triggerSurprise()">Click for a Surprise! ✨</button>
     </div>
 
-    <!-- LOWER MESSAGE BOARD COMPONENT -->
-    <div class="message-board-container">
-        <div class="board-title">Message Board</div>
-        <div class="ticker-messages">
-            <div class="message-bubble">
-                Can't wait to celebrate with you!
-                <span class="bubble-bow">🎀</span>
-            </div>
-            <div class="message-bubble">
-                HBD to the best guy!
-                <span class="bubble-bow">🎀</span>
-            </div>
-            <div class="message-bubble">
-                So proud of you, Leo!
-                <span class="bubble-bow">🎀</span>
-            </div>
+    <div class="modal" id="surpriseModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 style="color: var(--bat-yellow); font-size: 2rem; margin-bottom: 15px;">🦇 Secret Message Unlocked! 🎀</h2>
+            <p style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 20px;">
+                Aniq, you're the hero I always needed. Have an absolutely amazing birthday on June 20th! I love you to Gotham and back! 💖💫
+            </p>
+            <div style="font-size: 3rem;">🎂✨🎁</div>
         </div>
     </div>
 
-    <!-- CONTACT FOOTER MODULE -->
-    <footer>
-        <h3>Contact Me</h3>
-        <div class="contact-form-mini">
-            <input type="text" placeholder="Name" disabled>
-            <input type="email" placeholder="Email" disabled>
-        </div>
-    </footer>
+    <audio id="birthdayMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-    <!-- DYNAMIC TIMER LOGIC -->
     <script>
-        function updateTimer() {
-            const now = new Date();
-            const year = now.getFullYear();
-            // Target June 20th
-            let targetDate = new Date(`June 20, ${year} 00:00:00`);
-            
-            if (now > targetDate) {
-                targetDate = new Date(`June 20, ${year + 1} 00:00:00`);
-            }
+        // Automatic Year Adjuster & Countdown Setup
+        const currentYear = new Date().getFullYear();
+        let targetDate = new Date(`June 20, ${currentYear} 00:00:00`).getTime();
+        
+        // If June 20th passed this year, automatically count down to next year's June 20th
+        if (new Date().getTime() > targetDate) {
+            targetDate = new Date(`June 20, ${currentYear + 1} 00:00:00`).getTime();
+        }
 
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
             const difference = targetDate - now;
 
             const d = Math.floor(difference / (1000 * 60 * 60 * 24));
             const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / (1000));
 
-            // Set content matching structure exactly
-            document.getElementById('days-box').innerText = d.toString().padStart(2, '0');
-            document.getElementById('hours-box').innerText = h.toString().padStart(2, '0');
-            document.getElementById('mins-box').innerText = m.toString().padStart(2, '0');
+            document.getElementById('days').innerHTML = d < 10 ? '0' + d : d;
+            document.getElementById('hours').innerHTML = h < 10 ? '0' + h : h;
+            document.getElementById('minutes').innerHTML = m < 10 ? '0' + m : m;
+            document.getElementById('seconds').innerHTML = s < 10 ? '0' + s : s;
+
+            if (difference < 0) {
+                clearInterval(timer);
+                document.querySelector('h1').innerText = "IT'S YOUR BIRTHDAY ANIQ! 🎉";
+            }
+        }, 1000);
+
+        // Active background floaters loop
+        const canvas = document.getElementById('animation-canvas');
+        const emojis = ['🎀', '🦇', '💖', '⭐', '🐱', '🕶️'];
+
+        function createFloatingEmoji(customLeft = null) {
+            const element = document.createElement('div');
+            element.classList.add('floating-item');
+            element.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Random styling layouts
+            element.style.left = customLeft || (Math.random() * 100) + 'vw';
+            element.style.setProperty('--random-x', (Math.random() * 200 - 100) + 'px');
+            element.style.animationDuration = (Math.random() * 2 + 3) + 's'; 
+            element.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+
+            canvas.appendChild(element);
+
+            setTimeout(() => { element.remove(); }, 5000);
         }
 
-        setInterval(updateTimer, 60000);
-        updateTimer();
+        // Keep generating a soft stream of emojis passive style
+        setInterval(() => createFloatingEmoji(), 400);
+
+        // Surprise Button Logic
+        function triggerSurprise() {
+            // 1. Open active modal hidden compartment
+            document.getElementById('surpriseModal').classList.add('active');
+            
+            // 2. Play Background Audio tracks dynamically 
+            const audio = document.getElementById('birthdayMusic');
+            audio.play().catch(e => console.log("Audio waiting for explicit page tap interact event"));
+
+            // 3. Explode the screen with emojis simultaneously!
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    createFloatingEmoji((Math.random() * 100) + 'vw');
+                }, i * 50);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('surpriseModal').classList.remove('active');
+        }
     </script>
 </body>
 </html>
