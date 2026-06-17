@@ -48,20 +48,6 @@
             margin: 3px 0 0 0;
         }
 
-        /* SKYLINE BACKGROUND ELEMENTS */
-        .skyline-bg {
-            position: absolute;
-            bottom: 150px;
-            width: 100%;
-            height: 350px;
-            background-image: url('https://i.imgur.com/u7Y8G2N.png'); /* Replace with transparent gray city skyline silhouette if needed */
-            background-repeat: repeat-x;
-            background-position: bottom;
-            opacity: 0.15;
-            z-index: -1;
-            pointer-events: none;
-        }
-
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -69,20 +55,131 @@
             position: relative;
         }
 
-        /* HERO MAIN GRAPHIC (HELLO KITTY & BATMAN KISSING) */
+        /* PURE CSS HELLO KITTY & BATMAN KISSING GRAPHIC */
         .hero-graphic-center {
-            text-align: center;
-            margin: 20px auto 30px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin: 40px auto;
+            height: 150px;
             position: relative;
-            max-width: 400px;
-        }
-        .hero-graphic-center img {
-            width: 100%;
-            max-width: 320px;
-            height: auto;
+            max-width: 300px;
         }
 
-        /* MATCHING COUNTDOWN BANNER STYLING */
+        .css-character {
+            width: 100px;
+            height: 90px;
+            position: relative;
+        }
+
+        /* Pure CSS Hello Kitty */
+        .css-kitty {
+            background: #ffffff;
+            border-radius: 50% 50% 43% 43%;
+            border: 3px solid #1e252c;
+            transform: translateX(10px);
+            z-index: 2;
+        }
+        .css-kitty::before, .css-kitty::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            width: 0; height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 18px solid #ffffff;
+        }
+        .css-kitty::before { left: 2px; transform: rotate(-35deg); }
+        .css-kitty::after { right: 2px; transform: rotate(35deg); }
+        .css-kitty .ear-border-1 {
+            position: absolute; top: -10px; left: -1px; width: 20px; height: 3px; background: #1e252c; transform: rotate(-35deg);
+        }
+        .css-kitty .ear-border-2 {
+            position: absolute; top: -10px; right: -1px; width: 20px; height: 3px; background: #1e252c; transform: rotate(35deg);
+        }
+        .css-kitty .bow {
+            position: absolute;
+            top: -2px; right: 10px;
+            width: 16px; height: 16px;
+            background: var(--kitty-pink);
+            border-radius: 50%;
+            border: 2px solid #1e252c;
+            z-index: 5;
+        }
+        .css-kitty .bow::before, .css-kitty .bow::after {
+            content: '🎀';
+            position: absolute;
+            font-size: 18px;
+            top: -10px;
+            left: -6px;
+        }
+        .css-kitty .eye {
+            position: absolute;
+            top: 45px; right: 22px;
+            width: 6px; height: 9px;
+            background: #1e252c;
+            border-radius: 50%;
+        }
+        .css-kitty .blush {
+            position: absolute;
+            top: 54px; right: 12px;
+            width: 12px; height: 6px;
+            background: #ffb6c1;
+            border-radius: 50%;
+        }
+
+        /* Pure CSS Batman */
+        .css-batman {
+            background: #252f3a;
+            border-radius: 50% 50% 43% 43%;
+            border: 3px solid #1e252c;
+            transform: translateX(-10px);
+            z-index: 2;
+        }
+        .css-batman::before, .css-batman::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            width: 0; height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 22px solid #252f3a;
+        }
+        .css-batman::before { left: 8px; transform: rotate(-12deg); }
+        .css-batman::after { right: 8px; transform: rotate(12deg); }
+        .css-batman .bat-ear-b1 {
+            position: absolute; top: -12px; left: 6px; width: 3px; height: 20px; background: #1e252c; transform: rotate(-12deg);
+        }
+        .css-batman .bat-ear-b2 {
+            position: absolute; top: -12px; right: 6px; width: 3px; height: 20px; background: #1e252c; transform: rotate(12deg);
+        }
+        .css-batman .eye-slit {
+            position: absolute;
+            top: 42px; left: 20px;
+            width: 16px; height: 6px;
+            background: #ffffff;
+            border-radius: 3px;
+            transform: rotate(8deg);
+        }
+        .css-batman .cape {
+            position: absolute;
+            bottom: -15px; right: -5px;
+            width: 40px; height: 35px;
+            background: #1e252c;
+            clip-path: polygon(0 0, 100% 50%, 70% 100%, 0 80%);
+            z-index: -1;
+        }
+
+        /* Floating Hearts Burst above them */
+        .mid-hearts {
+            position: absolute;
+            top: -20px;
+            font-size: 1.4rem;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        /* COUNTDOWN BANNER CONTAINER */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
@@ -115,7 +212,7 @@
             text-align: center;
         }
 
-        /* MEMORIES ASYMMETRICAL SNAPSHOT LAYOUT */
+        /* GALLERY GRAPHICS */
         .memories-title {
             font-size: 1.1rem;
             text-transform: uppercase;
@@ -155,13 +252,11 @@
             line-height: 1.2;
         }
         
-        /* Positioning offsets mimicking image */
         .p1 { transform: rotate(-5deg) translateY(10px); }
         .p2 { transform: rotate(3deg) scale(0.85) translateY(30px); } 
         .p3 { transform: rotate(-1deg) translateY(-5px); width: 210px;}
         .p4 { transform: rotate(4deg) translateY(5px); }
 
-        /* Hello Kitty bow attached to frame corners */
         .photo-bow {
             position: absolute;
             top: -8px;
@@ -170,7 +265,7 @@
             z-index: 2;
         }
 
-        /* TICKER WISHES BOARD BELOW GALLERY */
+        /* WISHES TEXT BOX TICKER */
         .message-board-container {
             background-color: var(--gotham-mid);
             border-top: 2px solid var(--rose-gold);
@@ -209,7 +304,6 @@
             font-size: 11px;
         }
 
-        /* EXPANDABLE BIRTHDAY MESSAGE BOX */
         .board-btn {
             background-color: transparent;
             color: var(--text-light);
@@ -240,7 +334,6 @@
             color: #333;
         }
 
-        /* BACKGROUND FLOATING DECORATIONS (Decorative Canvas) */
         #deco-canvas {
             position: fixed;
             top: 0; left: 0;
@@ -249,16 +342,14 @@
             z-index: -1;
         }
 
-        /* AMBIENT BACKGROUND EMOTICONS */
         .ambient-icon {
             position: absolute;
-            opacity: 0.4;
+            opacity: 0.3;
             pointer-events: none;
             z-index: 0;
             font-size: 22px;
         }
 
-        /* CONTACT MINI FOOTER */
         footer {
             background-color: var(--gotham-dark);
             padding: 25px 20px;
@@ -287,14 +378,18 @@
             font-size: 0.8rem;
             flex: 1;
         }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
     </style>
 </head>
 <body>
 
     <canvas id="deco-canvas"></canvas>
-    <div class="skyline-bg"></div>
 
-    <!-- MAIN APP HEADER -->
+    <!-- HEADER BANNER -->
     <header>
         <h1>Happy Birthday, Aniq! 🦇🎀</h1>
         <p>JUNE 20TH - OUR SPECIAL DAY</p>
@@ -302,7 +397,7 @@
 
     <div class="main-container">
 
-        <!-- FLOATING SIDE BACKGROUND ACCENTS -->
+        <!-- SCATTERED BACKGROUND ICONS -->
         <div class="ambient-icon" style="top: 100px; left: 6%;">🦇</div>
         <div class="ambient-icon" style="top: 240px; left: 14%;">🦇</div>
         <div class="ambient-icon" style="top: 360px; left: 5%;">🐱</div>
@@ -310,19 +405,30 @@
         <div class="ambient-icon" style="top: 270px; right: 13%;">🦇</div>
         <div class="ambient-icon" style="top: 400px; right: 6%;">🦇</div>
 
-        <!-- HERO GRAPHIC CENTER BLOCK -->
+        <!-- ALWAYS AVAILABLE CSS HERO ARTWORK -->
         <div class="hero-graphic-center">
-            <!-- Paste your direct link to the kissing image here -->
-            <img src="https://i.imgur.com/Wv9N7g9.png" alt="Hello Kitty & Batman Kissing Artwork">
+            <div class="mid-hearts">💖</div>
+            <div class="css-character css-kitty">
+                <div class="ear-border-1"></div>
+                <div class="ear-border-2"></div>
+                <div class="bow"></div>
+                <div class="eye"></div>
+                <div class="blush"></div>
+            </div>
+            <div class="css-character css-batman">
+                <div class="bat-ear-b1"></div>
+                <div class="bat-ear-b2"></div>
+                <div class="eye-slit"></div>
+                <div class="cape"></div>
+            </div>
         </div>
 
-        <!-- RE-DESIGNED SEPARATED TIMER COMPONENT -->
+        <!-- SEPARATED TIMER BANNER -->
         <div class="countdown-wrapper">
             <div class="countdown-banner">
                 <span id="day-val" class="count-block">03</span> DAYS LEFT
                 <span>: :</span>
                 <span id="hr-val" class="count-block">14</span> HOURS LEFT
-                <span id="min-val" class="count-block" style="display:none;">00</span>
             </div>
         </div>
 
@@ -353,7 +459,7 @@
 
     </div>
 
-    <!-- SYSTEM MESSAGE BOARD & TICKER -->
+    <!-- WISHES BOARD PANEL -->
     <div class="message-board-container">
         <div class="board-title">Birthday Wishes From Us</div>
         <div class="ticker-messages">
@@ -371,7 +477,6 @@
             </div>
         </div>
 
-        <!-- TOGGLE LETTER BOX INSIDE BOARD CONTEXT -->
         <button class="board-btn" onclick="toggleLetter()">Open Letter</button>
         <div class="hidden-letter" id="birthday-letter">
             <h3>To My Favorite Person, Aniq,</h3>
@@ -381,7 +486,7 @@
         </div>
     </div>
 
-    <!-- CONTACT MODULE FOOTER -->
+    <!-- FOOTER CONTROLS -->
     <footer>
         <h3>Contact Me</h3>
         <div class="contact-form-mini">
@@ -391,7 +496,7 @@
     </footer>
 
     <script>
-        // COUNTDOWN TIMER TARGETING JUNE 20TH
+        // TARGET DATE COUNTDOWN LOGIC
         function runCountdown() {
             const now = new Date();
             const year = now.getFullYear();
@@ -415,7 +520,6 @@
         setInterval(runCountdown, 60000);
         runCountdown();
 
-        // LETTER DISPLAY CONTROLLER
         function toggleLetter() {
             const letter = document.getElementById('birthday-letter');
             if (letter.style.display === 'block') {
@@ -426,7 +530,7 @@
             }
         }
 
-        // FLOATING BACKGROUND AMBIENT OBJECT GENERATOR
+        // BACKGROUND FLOAT ANIMATION
         const canvas = document.getElementById('deco-canvas');
         const ctx = canvas.getContext('2d');
         let shapes = [];
