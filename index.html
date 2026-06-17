@@ -3,357 +3,411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Aniq! 🎀🦇</title>
+    <title>Happy Birthday, Leo!</title>
     <style>
         :root {
-            --kitty-pink: #FFB7C5;
-            --kitty-dark-pink: #FF69B4;
-            --bat-black: #111111;
-            --bat-yellow: #FDE047;
-            --text-light: #F3F4F6;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --gotham-dark: #232d37;
+            --gotham-blue: #3a4754;
+            --kitty-pink: #f5b7b1;
+            --rose-gold: #b38b82;
+            --bg-light: #d1d8e0;
+            --text-dark: #1e272e;
         }
 
         body {
-            background: linear-gradient(135deg, var(--bat-black) 50%, var(--kitty-pink) 50%);
-            background-size: cover;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            padding: 20px;
-            position: relative;
-        }
-
-        /* Gotham Skyline Background Effect */
-        body::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8)), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,20 L0,10 L5,10 L5,5 L10,5 L10,12 L15,12 L15,2 L25,2 L25,15 L30,15 L30,8 L40,8 L40,18 L45,18 L45,4 L55,4 L55,12 L60,12 L60,7 L70,7 L70,15 L75,15 L75,3 L85,3 L85,13 L90,13 L90,9 L100,9 L100,20 Z" fill="%23050505"/></svg>');
-            background-size: 100% 100%;
-            opacity: 0.4;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Main Container */
-        .card-container {
-            background: rgba(17, 17, 17, 0.85);
-            border: 4px solid var(--bat-yellow);
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(253, 224, 71, 0.3), 0 0 30px rgba(255, 105, 180, 0.4);
-            max-width: 600px;
-            width: 100%;
-            padding: 40px;
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
             text-align: center;
-            position: relative;
-            backdrop-filter: blur(10px);
-            z-index: 5;
-            animation: cardGlow 4s ease-in-out infinite alternate;
         }
 
-        @keyframes cardGlow {
-            0% { box-shadow: 0 0 20px rgba(253, 224, 71, 0.2); }
-            100% { box-shadow: 0 0 40px rgba(255, 105, 180, 0.5), 0 0 20px rgba(253, 224, 71, 0.4); }
+        /* Top Header Navigation style */
+        header {
+            background-color: var(--gotham-dark);
+            color: #ffffff;
+            padding: 20px;
+            letter-spacing: 2px;
+            border-bottom: 3px solid var(--rose-gold);
         }
 
-        /* Custom Interactive Header Mashup */
-        .mashup-header {
+        header h1 {
+            font-size: 1.8rem;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        header p {
+            font-size: 0.9rem;
+            color: var(--kitty-pink);
+            margin: 5px 0 0 0;
+        }
+
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
             position: relative;
-            height: 100px;
-            margin-bottom: 20px;
+        }
+
+        /* CSS KISSING ICON ARTWORK */
+        .kissing-stage {
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .center-logo {
-            font-size: 3.5rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            user-select: none;
-            filter: drop-shadow(0 0 10px rgba(253, 224, 71, 0.5));
-        }
-
-        .center-logo:hover {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        h1 {
-            color: var(--bat-yellow);
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 3px 3px var(--kitty-dark-pink);
-        }
-
-        h2 {
-            color: var(--kitty-pink);
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            font-weight: 400;
-        }
-
-        /* Active Countdown Grid */
-        .countdown-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin: 25px 0;
-        }
-
-        .time-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid var(--kitty-dark-pink);
-            border-radius: 12px;
-            padding: 15px 5px;
-            transition: all 0.3s ease;
+            gap: 10px;
+            margin: 30px auto;
+            height: 160px;
             position: relative;
-            overflow: hidden;
         }
 
-        .time-box::before {
+        .character {
+            width: 90px;
+            height: 90px;
+            position: relative;
+        }
+
+        /* Hello Kitty Vector Styling */
+        .kitty {
+            background: #ffffff;
+            border-radius: 50% 50% 45% 45%;
+            border: 3px solid #000;
+            position: relative;
+        }
+        .kitty::before, .kitty::after { /* Ears */
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(transparent, rgba(253, 224, 71, 0.1));
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: -8px;
+            width: 0; height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 20px solid #ffffff;
         }
-
-        .time-box:hover {
-            transform: translateY(-5px);
-            border-color: var(--bat-yellow);
-        }
-
-        .time-box:hover::before {
-            opacity: 1;
-        }
-
-        .time-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--bat-yellow);
-            display: block;
-            text-shadow: 0 0 10px rgba(253, 224, 71, 0.3);
-        }
-
-        .time-label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Message Box */
-        .message-box {
-            background: rgba(255, 183, 197, 0.1);
-            border-left: 5px solid var(--kitty-dark-pink);
-            border-right: 5px solid var(--bat-yellow);
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 30px;
-            color: var(--text-light);
-            line-height: 1.6;
-            font-size: 1.05rem;
-            position: relative;
-        }
-
-        /* Dynamic Action Button */
-        .surprise-btn {
-            background: linear-gradient(45deg, var(--kitty-dark-pink), var(--bat-yellow));
-            color: var(--bat-black);
-            font-weight: bold;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .surprise-btn:hover {
-            transform: scale(1.05) translateY(-2px);
-            box-shadow: 0 0 25px var(--bat-yellow), 0 0 15px var(--kitty-dark-pink);
-        }
-
-        .surprise-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Floating particles styling */
-        .floating-item {
+        .kitty::before { left: 4px; transform: rotate(-30deg); }
+        .kitty::after { right: 4px; transform: rotate(30deg); }
+        
+        .kitty .bow {
             position: absolute;
-            bottom: -50px;
-            pointer-events: none;
+            top: 2px; right: 8px;
+            width: 14px; height: 14px;
+            background: var(--kitty-pink);
+            border-radius: 50%;
+            border: 2px solid #000;
             z-index: 2;
-            animation: floatUp 6s linear forwards;
-            font-size: 2rem;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+        }
+        .kitty .eyes {
+            position: absolute;
+            top: 45px; right: 15px;
+            width: 6px; height: 8px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        /* Batman Vector Styling */
+        .batman {
+            background: #1e272e;
+            border-radius: 50% 50% 45% 45%;
+            border: 3px solid #000;
+        }
+        .batman::before, .batman::after { /* Cowl Ears */
+            content: '';
+            position: absolute;
+            top: -12px;
+            width: 0; height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 25px solid #1e272e;
+        }
+        .batman::before { left: 10px; transform: rotate(-10deg); }
+        .batman::after { right: 10px; transform: rotate(10deg); }
+
+        .batman .logo {
+            position: absolute;
+            bottom: 15px; left: 30px;
+            width: 30px; height: 12px;
+            background: #f1c40f;
+            border-radius: 3px;
+            border: 1px solid #000;
+        }
+        .batman .eye-slit {
+            position: absolute;
+            top: 40px; left: 15px;
+            width: 14px; height: 6px;
+            background: #fff;
+            transform: rotate(10deg);
+            border-radius: 2px;
+        }
+
+        /* Floating Hearts around them */
+        .love-hearts {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #e74c3c;
+            animation: floatUp 2.5s infinite ease-in-out;
+        }
+
+        /* STYLIZED COUNTDOWN BLOCK */
+        .countdown-box {
+            background-color: var(--gotham-dark);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+        .time-block {
+            background: var(--rose-gold);
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: var(--gotham-dark);
+        }
+
+        /* SCRAPBOOK AND POLAROIDS WITH BOWS */
+        .memories-title {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            color: var(--gotham-dark);
+        }
+        .scrapbook-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .polaroid {
+            background: white;
+            padding: 15px 15px 30px 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-radius: 2px;
+            width: 240px;
+            position: relative;
+            transform: rotate(-1.5deg);
+            transition: transform 0.3s;
+        }
+        .polaroid:nth-child(even) { transform: rotate(2deg); }
+        .polaroid:hover { transform: scale(1.05) rotate(0deg); z-index: 5; }
+        
+        .polaroid img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .polaroid-caption {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+        /* Tiny accent bow styling on pictures */
+        .photo-bow {
+            position: absolute;
+            top: -10px; right: -10px;
+            background: var(--kitty-pink);
+            border: 2px solid #000;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+        }
+
+        /* INTERACTIVE MESSAGE BOARD BUTTON */
+        .board-btn {
+            background-color: var(--gotham-blue);
+            color: white;
+            border: 2px solid var(--rose-gold);
+            padding: 12px 30px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 40px;
+            transition: 0.3s;
+        }
+        .board-btn:hover {
+            background-color: var(--rose-gold);
+            color: white;
+        }
+        .hidden-letter {
+            display: none;
+            background: #ffffff;
+            border: 2px solid var(--gotham-dark);
+            max-width: 600px;
+            margin: 20px auto 0 auto;
+            padding: 30px;
+            text-align: left;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* BACKGROUND FLOATING DECORATIONS (Decorative Canvas) */
+        #deco-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
 
         @keyframes floatUp {
-            0% {
-                transform: translateY(0) translateX(0) rotate(0deg);
-                opacity: 1;
-            }
-            50% {
-                transform: translateY(-50vh) translateX(50px) rotate(180deg);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-110vh) translateX(-20px) rotate(360deg);
-                opacity: 0;
-            }
+            0% { transform: translateY(10px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-40px); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="card-container">
-        <div class="mashup-header">
-            <div class="center-logo" id="logo" onclick="toggleLogo()">🦇</div>
-        </div>
-        
-        <h1>Happy Birthday, Aniq!</h1>
-        <h2>My Favorite Batman & Hello Kitty Mashup 💖</h2>
+    <canvas id="deco-canvas"></canvas>
 
-        <div class="countdown-container">
-            <div class="time-box">
-                <span class="time-number" id="days">00</span>
-                <span class="time-label">Days</span>
+    <header>
+        <h1>Happy Birthday, Leo! 🦇🎀</h1>
+        <p>JUNE 20TH - OUR SPECIAL DAY</p>
+    </header>
+
+    <div class="main-container">
+
+        <!-- KISSING HELLO KITTY & BATMAN VECTOR -->
+        <div class="kissing-stage">
+            <div class="character kitty">
+                <div class="bow"></div>
+                <div class="eyes"></div>
             </div>
-            <div class="time-box">
-                <span class="time-number" id="hours">00</span>
-                <span class="time-label">Hours</span>
+            <div class="character batman">
+                <div class="eye-slit"></div>
+                <div class="logo"></div>
             </div>
-            <div class="time-box">
-                <span class="time-number" id="minutes">00</span>
-                <span class="time-label">Mins</span>
-            </div>
-            <div class="time-box">
-                <span class="time-number" id="seconds">00</span>
-                <span class="time-label">Secs</span>
-            </div>
+            <div class="love-hearts" style="left:48%; top:20px;">❤️</div>
         </div>
 
-        <div class="message-box" id="message-container">
-            "To the hero who protects my heart like Batman protects Gotham, but is as soft and lovable as Hello Kitty. Click the logo or the action button below for a surprise!"
+        <!-- THE COUNTDOWN BLOCK -->
+        <div class="countdown-box">
+            <span id="day-val" class="time-block">00</span> DAYS LEFT :
+            <span id="hr-val" class="time-block">00</span> HOURS LEFT
         </div>
 
-        <button class="surprise-btn" onclick="triggerSurprise()">Activate Birthday Power! ✨</button>
+        <!-- MEMORY LANE -->
+        <h2 class="memories-title">Our Fav Memories ✨</h2>
+        <div class="scrapbook-grid">
+            <div class="polaroid">
+                <div class="photo-bow">🎀</div>
+                <img src="https://via.placeholder.com/240x220?text=Our+Adventure" alt="Memory 1">
+                <div class="polaroid-caption">Our first trip to the coast - Summer '25</div>
+            </div>
+            <div class="polaroid">
+                <div class="photo-bow">🎀</div>
+                <img src="https://via.placeholder.com/240x220?text=Laughs" alt="Memory 2">
+                <div class="polaroid-caption">Laughing till it hurt at the comedy show</div>
+            </div>
+            <div class="polaroid">
+                <div class="photo-bow">🎀</div>
+                <img src="https://via.placeholder.com/240x220?text=Us" alt="Memory 3">
+                <div class="polaroid-caption">The day we met Luna</div>
+            </div>
+        </div>
+
+        <!-- SPECIAL MESSAGE BOARD -->
+        <div style="margin-top: 60px;">
+            <button class="board-btn" onclick="toggleLetter()">Open on your Birthday</button>
+            <div class="hidden-letter" id="birthday-letter">
+                <h3>To My Favorite Person,</h3>
+                <p>I wanted to create something completely custom and unique to reflect us. You are the Batman to my Hello Kitty, and I love every single adventure we go on together.</p>
+                <p>Thank you for being the most loving, wonderful boyfriend. May this year bring you closer to everything you dream of achieving!</p>
+                <p><strong>Happy Birthday! ❤️</strong></p>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // Target Date: June 20th
-        const currentYear = new Date().getFullYear();
-        let targetDate = new Date(`June 20, ${currentYear} 00:00:00`).getTime();
-        
-        // If June 20th has already passed this year, countdown to next year
-        if (new Date().getTime() > targetDate) {
-            targetDate = new Date(`June 20, ${currentYear + 1} 00:00:00`).getTime();
-        }
+        // COUNTDOWN SCRIPT TARGETING JUNE 20
+        function runCountdown() {
+            const now = new Date();
+            const year = now.getFullYear();
+            let target = new Date(`June 20, ${year} 00:00:00`);
 
-        // Live Countdown Functionality
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const difference = targetDate - now;
+            if (now > target) {
+                target = new Date(`June 20, ${year + 1} 00:00:00`);
+            }
 
-            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const s = Math.floor((difference % (1000 * 60)) / 1000);
+            const diff = target - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 
-            document.getElementById('days').innerText = d < 10 ? '0' + d : d;
-            document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
-            document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
-            document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Logo click interactive switch
-        function toggleLogo() {
-            const logo = document.getElementById('logo');
-            if (logo.innerText === '🦇') {
-                logo.innerText = '🎀';
-                spawnParticles('🎀', 5);
+            if (diff <= 0 || (now.getMonth() === 5 && now.getDate() === 20)) {
+                document.querySelector('.countdown-box').innerHTML = "🎉 HAPPY BIRTHDAY, LEO! 🎉";
             } else {
-                logo.innerText = '🦇';
-                spawnParticles('🦇', 5);
+                document.getElementById('day-val').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hr-val').innerText = hours.toString().padStart(2, '0');
+            }
+        }
+        setInterval(runCountdown, 1000);
+        runCountdown();
+
+        // MESSAGE REVEAL
+        function toggleLetter() {
+            const letter = document.getElementById('birthday-letter');
+            if (letter.style.display === 'block') {
+                letter.style.display = 'none';
+            } else {
+                letter.style.display = 'block';
+                letter.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        // Active Element Spawner (Floating Kitty & Batman items)
-        function spawnParticles(emoji, count) {
-            for (let i = 0; i < count; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('floating-item');
-                particle.innerText = emoji;
-                
-                // Randomizing horizontal position, animation speed, and sizing
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.animationDuration = (Math.random() * 3 + 3) + 's'; 
-                particle.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
-                
-                document.body.appendChild(particle);
+        // BACKGROUND ANIMATION (FLOATING BATS AND BOWS)
+        const canvas = document.getElementById('deco-canvas');
+        const ctx = canvas.getContext('2d');
+        let shapes = [];
 
-                // Clear DOM after finish
-                setTimeout(() => {
-                    particle.remove();
-                }, 6000);
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class FallingShape {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 20;
+                this.type = Math.random() > 0.5 ? 'bat' : 'bow';
+                this.size = Math.random() * 12 + 10;
+                this.speedY = -(Math.random() * 1.5 + 0.5);
+                this.drift = Math.sin(Math.random() * 2);
+            }
+            draw() {
+                ctx.fillStyle = this.type === 'bat' ? '#232d37' : '#f5b7b1';
+                ctx.font = `${this.size}px serif`;
+                ctx.fillText(this.type === 'bat' ? '🦇' : '🎀', this.x, this.y);
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y / 30) * 0.5;
             }
         }
 
-        // Ambient background activity (Subtle random spawns)
-        setInterval(() => {
-            const items = ['🦇', '🎀', '🖤', '🌸', '🎂'];
-            const randomItem = items[Math.floor(Math.random() * items.length)];
-            spawnParticles(randomItem, 1);
-        }, 1500);
-
-        // Main Surprise Click Action
-        const specialMessages = [
-            "Aniq, you're the Dark Knight to my pink aesthetic! 🖤🌸",
-            "Gotham is safe, but my heart is taken by you! 🥰",
-            "Sending you endless hugs, bows, and batarangs! 🎀🦇",
-            "Counting down every second until we celebrate YOU! 🎉"
-        ];
-        let currentMsgIndex = 0;
-
-        function triggerSurprise() {
-            // Burst particles
-            spawnParticles('🦇', 8);
-            spawnParticles('🎀', 8);
-            spawnParticles('🎉', 5);
-
-            // Change messaging interactively on click
-            const msgBox = document.getElementById('message-container');
-            msgBox.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                msgBox.innerText = `"${specialMessages[currentMsgIndex]}"`;
-                msgBox.style.transform = 'scale(1)';
-                currentMsgIndex = (currentMsgIndex + 1) % specialMessages.length;
-            }, 1500;
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (shapes.length < 30 && Math.random() < 0.05) {
+                shapes.push(new FallingShape());
+            }
+            shapes.forEach((s, idx) => {
+                s.update();
+                s.draw();
+                if (s.y < -20) shapes.splice(idx, 1);
+            });
+            requestAnimationFrame(animate);
         }
+        animate();
     </script>
 </body>
 </html>
