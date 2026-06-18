@@ -102,8 +102,9 @@
         .no-btn {
             background-color: var(--gotham-blue);
             color: var(--text-muted);
-            position: relative;
+            position: absolute; /* Allows smooth absolute coordinates shifting */
             z-index: 10001;
+            transition: left 0.15s ease-out, top 0.15s ease-out; /* Smooth slide escape */
         }
 
         /* MAIN CONTENT (HIDDEN INITIAL OVERFLOW) */
@@ -557,25 +558,37 @@
     </div>
 
     <script>
-        // SURPRISE PAGE RUNAWAY NO OPTION LOGIC
+        // SURPRISE PAGE ACTIVE RUNAWAY NO OPTION LOGIC (KEEPS ON SCREEN)
         const noBtn = document.getElementById('runaway-no-btn');
 
         function moveNoButton() {
-            // Instantly hide/fade out the button when they try to touch or click it
-            noBtn.style.opacity = '0';
-            noBtn.style.pointerEvents = 'none';
-            
-            // Randomly jump its location somewhere completely off-center just in case, making it vanish completely
-            const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
-            const randomY = Math.floor(Math.random() * (window.innerHeight - 50));
-            noBtn.style.position = 'fixed';
+            // Set position to fixed once they interact with it to take it out of layout flow
+            if (noBtn.style.position !== 'fixed') {
+                noBtn.style.position = 'fixed';
+            }
+
+            const btnWidth = noBtn.offsetWidth;
+            const btnHeight = noBtn.offsetHeight;
+
+            // Calculate safe viewport limits to keep the button fully on screen
+            const maxX = window.innerWidth - btnWidth - 20;
+            const maxY = window.innerHeight - btnHeight - 20;
+
+            // Generate active random coordinates inside safe padding thresholds
+            const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+
             noBtn.style.left = randomX + 'px';
             noBtn.style.top = randomY + 'px';
         }
 
-        // Trigger on desktop hover and mobile touches
+        // Run away whenever user cursor tries to touch or enter it
         noBtn.addEventListener('mouseenter', moveNoButton);
-        noBtn.addEventListener('touchstart', moveNoButton);
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Stop mobile selection zoom flashes
+            moveNoButton();
+        });
         noBtn.addEventListener('click', function(e) {
             e.preventDefault();
             moveNoButton();
@@ -737,7 +750,6 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Only fall particles if main layout wrapper is loaded/revealed
             if (document.getElementById('main-content-wrapper').classList.contains('revealed')) {
                 if (shapes.length < 25 && Math.random() < 0.04) {
                     shapes.push(new FallingShape());
