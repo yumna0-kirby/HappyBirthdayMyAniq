@@ -30,6 +30,94 @@
             text-align: center;
         }
 
+        /* SURPRISE SPLASH PAGE OVERLAY */
+        #surprise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--sky-gradient);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .surprise-box {
+            background-color: var(--gotham-dark);
+            border: 3px dashed var(--rose-gold);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-width: 450px;
+            width: 100%;
+            position: relative;
+        }
+
+        .surprise-title {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            line-height: 1.4;
+            margin-bottom: 35px;
+            font-weight: 500;
+        }
+
+        .surprise-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            min-height: 60px;
+            position: relative;
+        }
+
+        .action-btn {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .yes-btn {
+            background-color: var(--kitty-pink);
+            color: var(--gotham-dark);
+            box-shadow: 0 6px 15px rgba(244, 180, 185, 0.4);
+            animation: pulseButton 1.5s infinite ease-in-out;
+        }
+
+        .yes-btn:hover {
+            transform: scale(1.1);
+            background-color: #ffc2c7;
+        }
+
+        .no-btn {
+            background-color: var(--gotham-blue);
+            color: var(--text-muted);
+            position: relative;
+            z-index: 10001;
+        }
+
+        /* MAIN CONTENT (HIDDEN INITIAL OVERFLOW) */
+        .main-wrapper-content {
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+        }
+
+        .main-wrapper-content.revealed {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         /* TOP NAVIGATION HEADER */
         header {
             background-color: var(--gotham-dark);
@@ -217,13 +305,13 @@
             border-radius: 2px;
         }
         .polaroid-caption {
-            font-family: 'Caveat', cursive; /* Beautiful handwritten style font */
+            font-family: 'Caveat', cursive;
             font-size: 1.3rem;
             margin-top: 15px;
             color: #222;
             line-height: 1.2;
             padding: 0 4px;
-            text-transform: none; /* Keeps it natural */
+            text-transform: none;
         }
         
         .p1 { transform: rotate(-4deg) translateY(5px); }
@@ -343,114 +431,181 @@
             font-family: 'Fredoka', sans-serif;
         }
 
-        /* CUTE FLOATING KEYFRAMES */
+        /* KEYFRAMES */
         @keyframes heartPulse {
-            0%, 100__ { transform: scale(1); }
+            0%, 100% { transform: scale(1); }
             50% { transform: scale(1.18); }
         }
         @keyframes gentleFloat {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
+        @keyframes pulseButton {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
     </style>
 </head>
 <body>
 
-    <canvas id="deco-canvas"></canvas>
-
-    <header>
-        <h1>Happy Birthday my Aniq! 🦇🎀</h1>
-        <p>I love you more than too much</p>
-    </header>
-
-    <div class="main-container">
-
-        <div class="ambient-icon" style="top: 100px; left: 6%;">🦇</div>
-        <div class="ambient-icon" style="top: 240px; left: 14%;">🎀</div>
-        <div class="ambient-icon" style="top: 360px; left: 5%;">🐱</div>
-        <div class="ambient-icon" style="top: 130px; right: 8%;">🎀</div>
-        <div class="ambient-icon" style="top: 270px; right: 13%;">🦇</div>
-        <div class="ambient-icon" style="top: 400px; right: 6%;">🐱</div>
-
-        <div class="hero-graphic-center">
-            <div class="mid-hearts">💖</div>
-            <img src="main-pic.jpg" alt="Hello Kitty and Batman Kissing" class="hero-image">
-        </div>
-
-        <div class="countdown-wrapper">
-            <div class="countdown-banner">
-                <span>⏱️</span>
-                <span id="day-val" class="count-block">00</span> DAYS LEFT
-                <span>::</span>
-                <span id="hr-val" class="count-block">00</span> HOURS LEFT
-            </div>
-        </div>
-
-        <div class="mid-letter-container">
-            <button class="board-btn" onclick="toggleLetter(event)">💌 Open Letter</button>
-            <div class="hidden-letter" id="birthday-letter">
-                <h3>To My Batman 🖤</h3>
-                <p>I can't wait for us to celebrate the rest of our birthdays together I love you too much and I will love you forever</p>
-                <p>thank you uni of leeds for bringing us together it is the best thing happened to me everrrr</p>
-                <p style="text-align: right; font-family: 'Caveat', cursive; font-size: 1.6rem; color: var(--rose-gold); margin-top: 20px;">
-                    <strong>Happy Birthday habibi Aniq ❤️</strong>
-                </p>
-            </div>
-        </div>
-
-        <h2 class="memories-title">✨ Our Favorite Memories ✨</h2>
-        <div class="scrapbook-grid">
-            <div class="polaroid p1">
-                <div class="photo-bow">🎀</div>
-                <img src="https://via.placeholder.com/200x180" alt="First karak date">
-                <div class="polaroid-caption">I wish i told my aniq that i love him more than the karak</div>
-            </div>
-            <div class="polaroid p2">
-                <div class="photo-bow">🎀</div>
-                <img src="https://via.placeholder.com/200x180" alt="First cake date hehehe">
-                <div class="polaroid-caption">I enjoy every moment with my aniqq</div>
-            </div>
-            <div class="polaroid p3">
-                <div class="photo-bow">🎀</div>
-                <img src="https://via.placeholder.com/200x180" alt="Funny King Aniq">
-                <div class="polaroid-caption">Lord aniq hehehe</div>
-            </div>
-            <div class="polaroid p4">
-                <div class="photo-bow">🎀</div>
-                <img src="https://via.placeholder.com/200x180" alt="Snow Oman">
-                <div class="polaroid-caption">best day ever</div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="message-board-container">
-        <div class="board-title">🎁 Birthday Wishes From Us 🎁</div>
-        <div class="ticker-messages">
-            <div class="message-bubble">
-               🐾 I love you dad hbd - Simba
-                <span class="bubble-bow">🎀</span>
-            </div>
-            <div class="message-bubble">
-                 🐱 meow meow meow dad - silver
-                <span class="bubble-bow">🎀</span>
-            </div>
-            <div class="message-bubble">
-                 💖 Happy Birthday kitty Aniq - your yumna
-                <span class="bubble-bow">🎀</span>
+    <!-- SURPRISE GATEWAY SPLASH SCREEN -->
+    <div id="surprise-overlay">
+        <div class="surprise-box">
+            <div class="surprise-title">I have a surprise for you, <br>do you wanna see it? 🦇🎀</div>
+            <div class="surprise-buttons">
+                <button class="action-btn yes-btn" onclick="revealSurprise(event)">YES &lt;3</button>
+                <button class="action-btn no-btn" id="runaway-no-btn">No</button>
             </div>
         </div>
     </div>
 
-    <footer>
-        <h3>Contact Me</h3>
-        <div class="contact-form-mini">
-            <input type="text" placeholder="Name" disabled>
-            <input type="email" placeholder="Email" disabled>
+    <!-- MAIN BIRTHDAY WEBSITE WRAPPER -->
+    <div class="main-wrapper-content" id="main-content-wrapper">
+        <canvas id="deco-canvas"></canvas>
+
+        <header>
+            <h1>Happy Birthday my Aniq! 🦇🎀</h1>
+            <p>I love you more than too much</p>
+        </header>
+
+        <div class="main-container">
+
+            <div class="ambient-icon" style="top: 100px; left: 6%;">🦇</div>
+            <div class="ambient-icon" style="top: 240px; left: 14%;">🎀</div>
+            <div class="ambient-icon" style="top: 360px; left: 5%;">🐱</div>
+            <div class="ambient-icon" style="top: 130px; right: 8%;">🎀</div>
+            <div class="ambient-icon" style="top: 270px; right: 13%;">🦇</div>
+            <div class="ambient-icon" style="top: 400px; right: 6%;">🐱</div>
+
+            <div class="hero-graphic-center">
+                <div class="mid-hearts">💖</div>
+                <img src="main-pic.jpg" alt="Hello Kitty and Batman Kissing" class="hero-image">
+            </div>
+
+            <div class="countdown-wrapper">
+                <div class="countdown-banner">
+                    <span>⏱️</span>
+                    <span id="day-val" class="count-block">00</span> DAYS LEFT
+                    <span>::</span>
+                    <span id="hr-val" class="count-block">00</span> HOURS LEFT
+                </div>
+            </div>
+
+            <div class="mid-letter-container">
+                <button class="board-btn" onclick="toggleLetter(event)">💌 Open Letter</button>
+                <div class="hidden-letter" id="birthday-letter">
+                    <h3>To My Batman 🖤</h3>
+                    <p>I can't wait for us to celebrate the rest of our birthdays together I love you too much and I will love you forever</p>
+                    <p>thank you uni of leeds for bringing us together it is the best thing happened to me everrrr</p>
+                    <p style="text-align: right; font-family: 'Caveat', cursive; font-size: 1.6rem; color: var(--rose-gold); margin-top: 20px;">
+                        <strong>Happy Birthday habibi Aniq ❤️</strong>
+                    </p>
+                </div>
+            </div>
+
+            <h2 class="memories-title">✨ Our Favorite Memories ✨</h2>
+            <div class="scrapbook-grid">
+                <div class="polaroid p1">
+                    <div class="photo-bow">🎀</div>
+                    <img src="https://via.placeholder.com/200x180" alt="First karak date">
+                    <div class="polaroid-caption">I wish i told my aniq that i love him more than the karak</div>
+                </div>
+                <div class="polaroid p2">
+                    <div class="photo-bow">🎀</div>
+                    <img src="https://via.placeholder.com/200x180" alt="First cake date hehehe">
+                    <div class="polaroid-caption">I enjoy every moment with my aniqq</div>
+                </div>
+                <div class="polaroid p3">
+                    <div class="photo-bow">🎀</div>
+                    <img src="https://via.placeholder.com/200x180" alt="Funny King Aniq">
+                    <div class="polaroid-caption">Lord aniq hehehe</div>
+                </div>
+                <div class="polaroid p4">
+                    <div class="photo-bow">🎀</div>
+                    <img src="https://via.placeholder.com/200x180" alt="Snow Oman">
+                    <div class="polaroid-caption">best day ever</div>
+                </div>
+            </div>
+
         </div>
-    </footer>
+
+        <div class="message-board-container">
+            <div class="board-title">🎁 Birthday Wishes From Us 🎁</div>
+            <div class="ticker-messages">
+                <div class="message-bubble">
+                   🐾 I love you dad hbd - Simba
+                    <span class="bubble-bow">🎀</span>
+                </div>
+                <div class="message-bubble">
+                     🐱 meow meow meow dad - silver
+                    <span class="bubble-bow">🎀</span>
+                </div>
+                <div class="message-bubble">
+                     💖 Happy Birthday kitty Aniq - your yumna
+                    <span class="bubble-bow">🎀</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <h3>Contact Me</h3>
+            <div class="contact-form-mini">
+                <input type="text" placeholder="Name" disabled>
+                <input type="email" placeholder="Email" disabled>
+            </div>
+        </footer>
+    </div>
 
     <script>
+        // SURPRISE PAGE RUNAWAY NO OPTION LOGIC
+        const noBtn = document.getElementById('runaway-no-btn');
+
+        function moveNoButton() {
+            // Instantly hide/fade out the button when they try to touch or click it
+            noBtn.style.opacity = '0';
+            noBtn.style.pointerEvents = 'none';
+            
+            // Randomly jump its location somewhere completely off-center just in case, making it vanish completely
+            const randomX = Math.floor(Math.random() * (window.innerWidth - 100));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - 50));
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        // Trigger on desktop hover and mobile touches
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('touchstart', moveNoButton);
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            moveNoButton();
+        });
+
+        // REVEAL SURPRISE LOGIC
+        function revealSurprise(e) {
+            const overlay = document.getElementById('surprise-overlay');
+            const mainContent = document.getElementById('main-content-wrapper');
+            
+            // Fire bursts of emojis at the click coordinates before removing overlay
+            if(e) {
+                createFireworkBurst(e.clientX, e.clientY);
+                setTimeout(() => {
+                    createFireworkBurst(window.innerWidth / 2, window.innerHeight / 3);
+                }, 200);
+            }
+
+            // Smooth transition
+            overlay.style.opacity = '0';
+            overlay.style.visibility = 'hidden';
+            
+            mainContent.classList.add('revealed');
+            
+            // Trigger target layout updates
+            setTimeout(() => {
+                overlay.remove();
+            }, 800);
+        }
+
         // TARGET DATE COUNTDOWN LOGIC
         function runCountdown() {
             const now = new Date();
@@ -582,9 +737,13 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            if (shapes.length < 25 && Math.random() < 0.04) {
-                shapes.push(new FallingShape());
+            // Only fall particles if main layout wrapper is loaded/revealed
+            if (document.getElementById('main-content-wrapper').classList.contains('revealed')) {
+                if (shapes.length < 25 && Math.random() < 0.04) {
+                    shapes.push(new FallingShape());
+                }
             }
+            
             shapes.forEach((s, idx) => {
                 s.update();
                 s.draw();
