@@ -43,9 +43,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: opacity 0.8s ease, visibility 0.8s;
             padding: 20px;
             box-sizing: border-box;
+            transition: opacity 0.8s ease, visibility 0.8s;
         }
 
         .surprise-box {
@@ -102,7 +102,7 @@
         .no-btn {
             background-color: var(--gotham-blue);
             color: var(--text-muted);
-            position: absolute; /* Allows smooth absolute coordinates shifting */
+            position: relative; /* Starts relative to sit side-by-side naturally */
             z-index: 10001;
             transition: left 0.15s ease-out, top 0.15s ease-out; /* Smooth slide escape */
         }
@@ -496,7 +496,7 @@
                 <button class="board-btn" onclick="toggleLetter(event)">💌 Open Letter</button>
                 <div class="hidden-letter" id="birthday-letter">
                     <h3>To My Batman 🖤</h3>
-                    <p> Happy birthday my Aniqqqq <333 I can't wait for us to celebrate the rest of our birthdays together I love you too much and I will love you forever</p>
+                    <p> Happy birthday my Aniqqqq &lt;333 I can't wait for us to celebrate the rest of our birthdays together I love you too much and I will love you forever</p>
                     <p>thank you uni of leeds for making us falling in love with each other it is the best thing happened to me everrrr</p>
                     <p style="text-align: right; font-family: 'Caveat', cursive; font-size: 1.6rem; color: var(--rose-gold); margin-top: 20px;">
                         <strong>Happy Birthday habibi Aniq ❤️</strong>
@@ -514,7 +514,7 @@
                 <div class="polaroid p2">
                     <div class="photo-bow">🎀</div>
                     <img src="memory2.jpg" alt="First karak date hehehe">
-                    <div class="polaroid-caption">our first karak date <3</div>
+                    <div class="polaroid-caption">our first karak date &lt;3</div>
                 </div>
                 <div class="polaroid p3">
                     <div class="photo-bow">🎀</div>
@@ -534,7 +534,7 @@
             <div class="board-title">🎁 Birthday Wishes From Us 🎁</div>
             <div class="ticker-messages">
                 <div class="message-bubble">
-                   🐾 I meow you dad - Simba
+                    🐾 I meow you dad - Simba
                     <span class="bubble-bow">🎀</span>
                 </div>
                 <div class="message-bubble">
@@ -562,7 +562,7 @@
         const noBtn = document.getElementById('runaway-no-btn');
 
         function moveNoButton() {
-            // Set position to fixed once they interact with it to take it out of layout flow
+            // Dynamically change layout behavior to fixed right as interaction triggers
             if (noBtn.style.position !== 'fixed') {
                 noBtn.style.position = 'fixed';
             }
