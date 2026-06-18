@@ -10,11 +10,15 @@
             --gotham-mid: #2d3742;
             --gotham-blue: #3e4b59;
             --steel-gray: #c9d1d9;
-            --sky-gradient: linear-gradient(to bottom, #a4b5c4, #cbd6de);
+            --sky-gradient: radial-gradient(circle at 50% 50%, #dbe3e8 0%, #a4b5c4 100%);
             --kitty-pink: #f4b4b9;
             --rose-gold: #b28a82;
             --text-light: #ffffff;
             --text-muted: #a3b0bc;
+            
+            /* 3D Extrusion Borders */
+            --3d-shadow: 0 1px 0 #151a1f, 0 2px 0 #151a1f, 0 3px 0 #151a1f, 0 4px 0 #151a1f, 0 5px 0 #151a1f;
+            --rose-3d: 0 1px 0 #8c6861, 0 2px 0 #8c6861, 0 3px 0 #8c6861, 0 4px 0 #8c6861;
         }
 
         body {
@@ -25,52 +29,62 @@
             padding: 0;
             overflow-x: hidden;
             text-align: center;
-            perspective: 1000px; /* Enables global 3D environment perspective */
+            perspective: 1200px; /* Strong depth perspective for the entire document */
         }
 
-        /* TOP NAVIGATION HEADER WITH 3D DEPTH */
+        /* 3D FLOATING HEADER */
         header {
             background-color: var(--gotham-dark);
             color: var(--text-light);
-            padding: 20px;
-            border-bottom: 3px solid var(--rose-gold);
+            padding: 25px 20px;
+            border-bottom: 4px solid var(--rose-gold);
             letter-spacing: 2px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            z-index: 10;
+            width: 85%;
+            margin: 20px auto;
+            border-radius: 12px;
+            transform: rotateX(15deg) translateZ(20px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.35), var(--3d-shadow);
+            transform-style: preserve-3d;
         }
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin: 0;
             text-transform: uppercase;
             font-weight: 700;
-            text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.6);
+            transform: translateZ(25px); /* Pushes text way off the background */
+            text-shadow: 0 4px 8px rgba(0,0,0,0.5);
         }
         header p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
-            margin: 5px 0 0 0;
+            margin: 8px 0 0 0;
+            transform: translateZ(15px);
         }
 
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 20px 40px 20px;
-            position: relative;
+            padding: 20px;
+            transform-style: preserve-3d;
         }
 
-        /* NEW 3D LAYERED CHARACTER STYLING */
+        /* 3D ISOMETRIC CHARACTER SHOWCASESTAGE */
         .hero-graphic-center {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
-            margin: 50px auto;
+            gap: 20px;
+            margin: 60px auto;
             height: 180px;
             position: relative;
-            max-width: 350px;
+            max-width: 360px;
             transform-style: preserve-3d;
-            transform: rotateX(10deg) rotateY(-5deg); /* Slight isometric angle for 3D showcase */
+            transform: rotateX(20deg) rotateY(-15deg) translateZ(40px); /* Isometric room setup */
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 50%;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.15);
         }
 
         .css-character {
@@ -78,322 +92,268 @@
             height: 95px;
             position: relative;
             transform-style: preserve-3d;
-            filter: drop-shadow(5px 15px 10px rgba(0,0,0,0.25)); /* Creates realistic floor separation drop shadows */
-            transition: transform 0.5s ease;
-        }
-        .hero-graphic-center:hover .css-character {
-            transform: translateZ(20px) scale(1.05); /* Interactive pop-out effect */
+            transition: transform 0.4s ease;
         }
 
-        /* Pure 3D Pop Hello Kitty */
+        /* 3D Hello Kitty Layers */
         .css-kitty {
-            background: radial-gradient(circle at 30% 30%, #ffffff 60%, #e0e5eb 100%);
+            background: radial-gradient(circle at 35% 35%, #ffffff 60%, #cbd4de 100%);
             border-radius: 50% 50% 43% 43%;
             border: 3px solid #1e252c;
-            transform: translateX(10px) translateZ(10px);
-            z-index: 2;
+            transform: translateZ(30px); /* Layered forward */
+            box-shadow: -5px 10px 20px rgba(0,0,0,0.2);
         }
         .css-kitty::before, .css-kitty::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            width: 0; height: 0;
-            border-left: 11px solid transparent;
-            border-right: 11px solid transparent;
-            border-bottom: 20px solid #ffffff;
+            content: ''; position: absolute; top: -10px; width: 0; height: 0;
+            border-left: 11px solid transparent; border-right: 11px solid transparent; border-bottom: 20px solid #ffffff;
         }
-        .css-kitty::before { left: 2px; transform: rotate(-35deg); }
-        .css-kitty::after { right: 2px; transform: rotate(35deg); }
+        .css-kitty::before { left: 2px; transform: rotate(-35deg) translateZ(-5px); }
+        .css-kitty::after { right: 2px; transform: rotate(35deg) translateZ(-5px); }
         
         .css-kitty .bow {
-            position: absolute;
-            top: -2px; right: 10px;
+            position: absolute; top: -2px; right: 10px;
             width: 18px; height: 18px;
             background: var(--kitty-pink);
-            border-radius: 50%;
-            border: 2px solid #1e252c;
-            z-index: 5;
-            transform: translateZ(5px); /* Forces element forward in 3D stack */
+            border-radius: 50%; border: 2px solid #1e252c;
+            transform: translateZ(15px); /* Extruded Ribbon */
         }
         .css-kitty .bow::before {
-            content: '🎀';
-            position: absolute;
-            font-size: 20px;
-            top: -11px;
-            left: -5px;
+            content: '🎀'; position: absolute; font-size: 22px; top: -11px; left: -5px;
         }
         .css-kitty .eye {
-            position: absolute;
-            top: 48px; right: 24px;
-            width: 7px; height: 10px;
-            background: #1e252c;
-            border-radius: 50%;
+            position: absolute; top: 48px; right: 24px; width: 7px; height: 10px; background: #1e252c; border-radius: 50%;
         }
         .css-kitty .blush {
-            position: absolute;
-            top: 58px; right: 12px;
-            width: 14px; height: 7px;
-            background: #ffb6c1;
-            border-radius: 50%;
+            position: absolute; top: 58px; right: 12px; width: 14px; height: 7px; background: #ffb6c1; border-radius: 50%;
         }
 
-        /* Pure 3D Pop Batman */
+        /* 3D Batman Layers */
         .css-batman {
-            background: radial-gradient(circle at 40% 30%, #344252 30%, #1a222a 100%);
+            background: radial-gradient(circle at 50% 30%, #3e4b59 20%, #151a1f 100%);
             border-radius: 50% 50% 43% 43%;
             border: 3px solid #1e252c;
-            transform: translateX(-10px) translateZ(15px);
-            z-index: 3;
+            transform: translateZ(50px) scale(1.02); /* Highest floating index layer */
+            box-shadow: 5px 15px 25px rgba(0,0,0,0.3);
         }
         .css-batman::before, .css-batman::after {
-            content: '';
-            position: absolute;
-            top: -14px;
-            width: 0; height: 0;
-            border-left: 9px solid transparent;
-            border-right: 9px solid transparent;
-            border-bottom: 24px solid #252f3a;
+            content: ''; position: absolute; top: -14px; width: 0; height: 0;
+            border-left: 9px solid transparent; border-right: 9px solid transparent; border-bottom: 24px solid #252f3a;
         }
         .css-batman::before { left: 8px; transform: rotate(-12deg); }
         .css-batman::after { right: 8px; transform: rotate(12deg); }
         
         .css-batman .eye-slit {
-            position: absolute;
-            top: 44px; left: 20px;
-            width: 18px; height: 6px;
-            background: #ffffff;
-            border-radius: 3px;
-            transform: rotate(6deg) translateZ(3px);
-            box-shadow: 0 0 8px #ffffff;
+            position: absolute; top: 44px; left: 20px; width: 18px; height: 6px;
+            background: #ffffff; border-radius: 3px;
+            transform: rotate(6deg) translateZ(5px);
+            box-shadow: 0 0 10px #ffffff;
         }
         .css-batman .cape {
-            position: absolute;
-            bottom: -18px; right: -8px;
-            width: 45px; height: 40px;
-            background: #11151a;
-            clip-path: polygon(0 0, 100% 50%, 70% 100%, 0 80%);
-            z-index: -1;
-            transform: translateZ(-10px) rotateY(-10deg);
+            position: absolute; bottom: -18px; right: -8px; width: 45px; height: 40px;
+            background: #11151a; clip-path: polygon(0 0, 100% 50%, 70% 100%, 0 80%);
+            transform: translateZ(-20px) rotateY(-15deg); /* Folded back in 3D */
         }
 
-        /* Deep Floating Hearts Burst */
         .mid-hearts {
-            position: absolute;
-            top: -30px;
-            font-size: 1.8rem;
+            position: absolute; top: -40px; font-size: 2.2rem;
             animation: pulse 1.5s infinite ease-in-out;
-            text-shadow: 0 8px 15px rgba(0,0,0,0.2);
-            transform: translateZ(30px);
+            transform: translateZ(70px);
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.3));
         }
 
-        /* 3D BANNER CONTAINER */
+        /* STRUCTURAL BLOCK TIMER WITH BRICK THICKNESS */
         .countdown-wrapper {
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin: 0 auto 40px auto;
+            margin: 40px auto;
             transform-style: preserve-3d;
         }
         .countdown-banner {
             background-color: var(--gotham-dark);
             border: 2px solid var(--gotham-blue);
-            border-radius: 8px;
-            padding: 10px 24px;
+            border-radius: 12px;
+            padding: 15px 30px;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             color: var(--text-light);
-            font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+            font-weight: 700;
+            font-size: 1rem;
             letter-spacing: 1px;
-            transform: rotateX(5deg);
+            transform: rotateX(10deg) translateZ(10px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.3), var(--3d-shadow);
         }
         .count-block {
-            background: linear-gradient(135deg, #c49a91, var(--rose-gold));
+            background: linear-gradient(135deg, #d3a69d, var(--rose-gold));
             color: var(--gotham-dark);
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            min-width: 26px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            min-width: 30px;
             display: inline-block;
-            text-align: center;
-            box-shadow: inset 0 -2px 0px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.3);
+            box-shadow: inset 0 -3px 0px rgba(0,0,0,0.3), 0 6px 10px rgba(0,0,0,0.4), var(--rose-3d);
+            transform: translateZ(15px);
         }
 
-        /* LETTERS AND GRAPHICS CONTAINER */
+        /* OPEN LETTER WITH FLIP DEPTH HOVER EFFECT */
         .mid-letter-container {
-            margin: 30px auto 60px auto;
+            margin: 50px auto 70px auto;
             max-width: 600px;
-            position: relative;
-            z-index: 5;
+            transform-style: preserve-3d;
         }
         .board-btn {
             background: linear-gradient(135deg, var(--gotham-mid), var(--gotham-dark));
             color: var(--text-light);
             border: 2px solid var(--rose-gold);
-            padding: 15px 40px;
-            font-size: 1rem;
+            padding: 18px 45px;
+            font-size: 1.1rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
             border-radius: 40px;
-            transition: all 0.2s;
             font-weight: bold;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25), inset 0 2px 3px rgba(255,255,255,0.1);
+            transform: rotateX(15deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3), var(--3d-shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         .board-btn:hover {
-            transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            transform: rotateX(5deg) translateY(-5px) translateZ(15px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.4), var(--3d-shadow);
             border-color: #ffffff;
         }
         .board-btn:active {
-            transform: translateY(1px);
+            transform: rotateX(20deg) translateY(2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .hidden-letter {
             display: none;
             background: #ffffff;
-            border: 2px solid var(--gotham-dark);
-            max-width: 100%;
-            margin: 25px auto 0 auto;
+            border: 3px solid var(--gotham-dark);
+            margin: 30px auto 0 auto;
             padding: 35px;
             text-align: left;
-            border-radius: 12px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-radius: 16px;
             color: #333;
-            transform: rotateX(2deg);
+            transform: rotateX(5deg) translateZ(10px);
+            box-shadow: 0 30px 50px rgba(0,0,0,0.25), 0 10px 0px #b1bac4;
         }
 
-        /* SCRAPBOOK 3D POLAROIDS */
+        /* EXTRA TILTED SCRAPBOOK 3D IMAGES */
         .memories-title {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             color: var(--gotham-dark);
+            margin-top: 60px;
             margin-bottom: 40px;
-            font-weight: bold;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 800;
+            transform: translateZ(10px);
         }
         .scrapbook-grid {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 40px;
             transform-style: preserve-3d;
+            padding: 20px;
         }
         .polaroid {
             background: #ffffff;
-            padding: 14px 14px 28px 14px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            padding: 16px 16px 32px 16px;
             width: 210px;
             position: relative;
-            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s;
             transform-style: preserve-3d;
+            border-radius: 4px;
+            /* Real shadow thickness underneath tilted cards */
+            box-shadow: -10px 20px 30px rgba(0,0,0,0.2), 0 5px 0px #e0e5eb;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .polaroid img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+            width: 100%; height: 195px; object-fit: cover;
+            border: 1px solid #ddd;
         }
         .polaroid-caption {
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-top: 14px;
-            color: #333;
-            text-transform: uppercase;
-            line-height: 1.3;
+            font-family: 'Courier New', monospace; font-size: 0.75rem; font-weight: bold;
+            margin-top: 15px; color: #333; text-transform: uppercase;
         }
         
-        /* Set distinct real angle positions in 3D field space */
-        .p1 { transform: rotate(-4deg) translateZ(5px); }
-        .p2 { transform: rotate(5deg) scale(0.9) translateZ(-10px) translateY(20px); } 
-        .p3 { transform: rotate(-2deg) translateZ(15px) translateY(-5px); width: 220px;}
-        .p4 { transform: rotate(3deg) translateZ(0px) translateY(10px); }
+        /* Drastic structural spacing across dimensions */
+        .p1 { transform: rotateX(12deg) rotateY(-10deg) rotateZ(-6deg) translateZ(10px); }
+        .p2 { transform: rotateX(15deg) rotateY(12deg) rotateZ(4deg) translateY(20px) translateZ(-10px); } 
+        .p3 { transform: rotateX(10deg) rotateY(-5deg) rotateZ(-2deg) translateZ(30px); width: 220px; }
+        .p4 { transform: rotateX(14deg) rotateY(8deg) rotateZ(5deg) translateZ(5px); }
 
         .polaroid:hover {
-            transform: scale(1.1) rotate(0deg) translateZ(30px) translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.35);
-            z-index: 10;
+            transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(80px) translateY(-15px);
+            box-shadow: 0 45px 65px rgba(0,0,0,0.4), 0 8px 0px #cbd4de;
+            z-index: 100;
         }
 
         .photo-bow {
-            position: absolute;
-            top: -10px; right: -10px;
-            font-size: 22px;
-            z-index: 5;
-            filter: drop-shadow(0 4px 5px rgba(0,0,0,0.2));
-            transform: translateZ(10px);
+            position: absolute; top: -12px; right: -12px;
+            font-size: 26px;
+            filter: drop-shadow(0 6px 6px rgba(0,0,0,0.3));
+            transform: translateZ(25px); /* Floats highly off picture frame */
         }
 
-        /* DISPLAY COVERS BOARD OVERLAY TIER */
+        /* EXTRUDED WISHES PANEL BOX TIER */
         .message-board-container {
-            background: linear-gradient(to bottom, var(--gotham-mid), var(--gotham-dark));
-            border-top: 3px solid var(--rose-gold);
-            padding: 50px 20px;
-            margin-top: 90px;
+            background: linear-gradient(135deg, var(--gotham-mid), var(--gotham-dark));
+            border-top: 4px solid var(--rose-gold);
+            padding: 60px 20px;
+            margin-top: 100px;
             color: var(--text-light);
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.2);
+            transform: rotateX(10deg);
+            box-shadow: 0 -15px 40px rgba(0,0,0,0.25), var(--3d-shadow);
+            transform-style: preserve-3d;
         }
         .board-title {
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-            color: var(--text-muted);
+            font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 40px; color: var(--text-muted);
+            transform: translateZ(20px);
         }
         .ticker-messages {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; transform-style: preserve-3d;
         }
         .message-bubble {
-            background-color: rgba(255, 255, 255, 0.03);
+            background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--gotham-blue);
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.8rem;
-            color: var(--text-light);
-            letter-spacing: 0.5px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 3px 0px var(--gotham-dark);
+            transform: translateZ(30px);
+            transition: transform 0.3s;
         }
         .message-bubble:hover {
-            transform: translateY(-3px);
-            background-color: rgba(255, 255, 255, 0.07);
-            border-color: var(--rose-gold);
+            transform: translateZ(50px) translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
         }
         .bubble-bow {
-            position: absolute;
-            bottom: -8px; right: 15px;
-            font-size: 12px;
+            position: absolute; bottom: -8px; right: 15px; font-size: 14px;
         }
 
-        /* PERSISTENT FULL-WINDOW RENDERING LAYER */
+        /* IMMERSIVE MASTER GRAPHICS OVERLAY */
         #deco-canvas {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 99999; /* Higher priority execution layout stack */
+            z-index: 999999;
         }
 
         footer {
-            background-color: #15191e;
-            padding: 30px 20px;
+            background-color: #111519;
+            padding: 40px 20px;
             color: var(--text-light);
-            border-top: 1px solid #232b33;
+            border-top: 2px solid #232b33;
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1) translateZ(30px); }
-            50% { transform: scale(1.15) translateZ(40px); }
+            0%, 100% { transform: scale(1) translateZ(70px); }
+            50% { transform: scale(1.12) translateZ(85px); }
         }
     </style>
 </head>
@@ -409,7 +369,7 @@
 
     <div class="main-container">
 
-        <!-- LAYERED CSS 3D POP ARTWORK HERO SECTION -->
+        <!-- SCENIC 3D CHARACTER ROW STAGE -->
         <div class="hero-graphic-center">
             <div class="mid-hearts">💖</div>
             <div class="css-character css-kitty">
@@ -423,7 +383,7 @@
             </div>
         </div>
 
-        <!-- SEPARATED TIMER BANNER -->
+        <!-- EXTENDED 3D TIMER BANNER -->
         <div class="countdown-wrapper">
             <div class="countdown-banner">
                 <span id="day-val" class="count-block">03</span> DAYS LEFT
@@ -536,12 +496,12 @@
             }
         }
 
-        // CANVAS PARTICLES ENVIRONMENT WITH REAL 3D DEPTH PHYSICS
+        // CINEMATIC 3D EXPLOSION ENGINE
         const canvas = document.getElementById('deco-canvas');
         const ctx = canvas.getContext('2d');
         let shapes = [];
         let fireworks = [];
-        const FOCAL_LENGTH = 350; // Controls the intensity of the 3D depth field perspective
+        const FOCAL_LENGTH = 300; 
 
         function resize() {
             canvas.width = window.innerWidth;
@@ -555,8 +515,8 @@
                 this.x = Math.random() * canvas.width;
                 this.y = canvas.height + 20;
                 this.type = Math.random() > 0.5 ? 'bat' : 'bow';
-                this.size = Math.random() * 10 + 12;
-                this.speedY = -(Math.random() * 1.2 + 0.4);
+                this.size = Math.random() * 8 + 12;
+                this.speedY = -(Math.random() * 1.0 + 0.4);
             }
             draw() {
                 ctx.font = `${this.size}px serif`;
@@ -568,41 +528,41 @@
             }
         }
 
-        // 3D FIELD SPACE PROJECTION FIREWORK CLASS
-        class FireworkParticle3D {
+        // DEEP PERSPECTIVE 3D RENDER CLASS FOR MAXIMUM INTERACTION
+        class DramaticParticle3D {
             constructor(startX, startY) {
                 this.originX = startX;
                 this.originY = startY;
 
-                // 3D coordinates system relative to the center origin point
+                // internal coordinates 
                 this.x3d = 0;
                 this.y3d = 0;
-                this.z3d = 0; // Depth coordinate position tracking variable
+                this.z3d = 0; 
 
-                this.isEmoji = Math.random() > 0.35;
+                this.isEmoji = Math.random() > 0.4;
                 
                 if (this.isEmoji) {
-                    const emojis = ['🦇', '🎀', '✨', '🎉', '💖', '💥'];
-                    this.char = emojis[Math.floor(Math.random() * emojis.length)];
-                    this.baseSize = Math.random() * 14 + 20;
+                    const pools = ['🦇', '🎀', '✨', '🎉', '💥', '💖'];
+                    this.char = pools[Math.floor(Math.random() * pools.length)];
+                    this.baseSize = Math.random() * 16 + 24; // Ultra-large dramatic assets
                 } else {
-                    const sparks = ['#f4b4b9', '#b28a82', '#ffb6c1', '#ffffff', '#ffd700'];
-                    this.color = sparks[Math.floor(Math.random() * sparks.length)];
-                    this.baseRadius = Math.random() * 4 + 3;
+                    const colors = ['#f4b4b9', '#b28a82', '#ffb6c1', '#ffffff', '#ffd700'];
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.baseRadius = Math.random() * 5 + 4;
                 }
                 
-                // Explodes vector velocity values uniformly inside full 3D spheres
+                // Explodes across a wide 3D vector space field directly towards screen viewpoints
                 const theta = Math.random() * Math.PI * 2;
                 const phi = Math.acos((Math.random() * 2) - 1);
-                const speed = Math.random() * 8 + 4; 
+                const speed = Math.random() * 11 + 6; // High velocity kick factor
 
                 this.speedX = speed * Math.sin(phi) * Math.cos(theta);
                 this.speedY = speed * Math.sin(phi) * Math.sin(theta);
-                this.speedZ = speed * Math.cos(phi); // Moves forward/backward inside space matrix
-
-                this.gravity = 0.14; 
+                this.speedZ = speed * Math.cos(phi) - 3; // Negative constant forces expansion toward user camera perspective
+                
+                this.gravity = 0.16;
                 this.alpha = 1;
-                this.decay = Math.random() * 0.012 + 0.006;
+                this.decay = Math.random() * 0.01 + 0.005; // Extended air lifespan
             }
             
             update() {
@@ -614,13 +574,9 @@
             }
 
             draw() {
-                // Calculate scale ratio value based on Z index depth (perspective matrix)
                 const scale = FOCAL_LENGTH / (FOCAL_LENGTH + this.z3d);
-                
-                // Don't draw if element flies completely past behind viewer camera vision path
                 if (scale <= 0 || this.alpha <= 0) return;
 
-                // Project 3D positions directly onto your standard 2D view screen coordinate map planes
                 const projX = this.originX + (this.x3d * scale);
                 const projY = this.originY + (this.y3d * scale);
 
@@ -628,18 +584,18 @@
                 ctx.globalAlpha = this.alpha;
 
                 if (this.isEmoji) {
-                    const currentSize = this.baseSize * scale;
-                    if (currentSize > 1) {
-                        ctx.font = `${currentSize}px serif`;
+                    const finalSize = this.baseSize * scale;
+                    if (finalSize > 1) {
+                        ctx.font = `${finalSize}px serif`;
                         ctx.fillText(this.char, projX, projY);
                     }
                 } else {
-                    const currentRadius = this.baseRadius * scale;
-                    if (currentRadius > 0.5) {
+                    const finalRadius = this.baseRadius * scale;
+                    if (finalRadius > 0.5) {
                         ctx.beginPath();
-                        ctx.arc(projX, projY, currentRadius, 0, Math.PI * 2);
+                        ctx.arc(projX, projY, finalRadius, 0, Math.PI * 2);
                         ctx.fillStyle = this.color;
-                        ctx.shadowBlur = 12 * scale; // Shadows size dynamically scale inside space map field depth
+                        ctx.shadowBlur = 15 * scale;
                         ctx.shadowColor = this.color;
                         ctx.fill();
                     }
@@ -649,16 +605,16 @@
         }
 
         function createFireworkBurst(clickX, clickY) {
-            // Generates 85 interactive particles flying simultaneously outwards in 3D perspective layers
-            for (let i = 0; i < 85; i++) {
-                fireworks.push(new FireworkParticle3D(clickX, clickY));
+            // Fires 95 large high-speed multi-axis particles at once!
+            for (let i = 0; i < 95; i++) {
+                fireworks.push(new DramaticParticle3D(clickX, clickY));
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            if (shapes.length < 20 && Math.random() < 0.03) {
+            if (shapes.length < 15 && Math.random() < 0.02) {
                 shapes.push(new FallingShape());
             }
             shapes.forEach((s, idx) => {
