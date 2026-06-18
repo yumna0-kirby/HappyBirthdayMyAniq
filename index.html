@@ -70,13 +70,16 @@
             height: auto;
             max-height: 280px;
             object-fit: contain;
-            border-radius: 20px;
-            /* Seamlessly blends the white background image into the layout */
-            box-shadow: 0 10px 30px rgba(45, 55, 66, 0.15); 
-            border: 3px solid var(--gotham-dark);
-            background-color: #ffffff;
-            padding: 10px;
             z-index: 2;
+            display: block;
+            
+            /* Magic blending styles */
+            mix-blend-mode: multiply;
+            filter: drop-shadow(0px 10px 15px rgba(45, 55, 66, 0.2));
+            background-color: transparent;
+            border: none;
+            padding: 0;
+            border-radius: 0;
         }
 
         /* Floating Hearts Burst above them */
