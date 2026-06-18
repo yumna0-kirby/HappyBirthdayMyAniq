@@ -212,29 +212,34 @@
             text-align: center;
         }
 
-        /* MID-PAGE LETTER STYLES */
+        /* MID-PAGE LETTER STYLES (BEFORE MEMORIES) */
         .mid-letter-container {
-            margin: 20px auto 50px auto;
+            margin: 30px auto 60px auto;
             max-width: 600px;
+            position: relative;
+            z-index: 5;
         }
         .board-btn {
             background-color: var(--gotham-dark);
             color: var(--text-light);
             border: 2px solid var(--rose-gold);
-            padding: 12px 30px;
-            font-size: 0.9rem;
+            padding: 14px 36px;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             cursor: pointer;
-            border-radius: 25px;
-            transition: 0.3s;
+            border-radius: 30px;
+            transition: transform 0.2s, background-color 0.3s;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         .board-btn:hover {
             background-color: var(--rose-gold);
             color: var(--gotham-dark);
             transform: scale(1.05);
+        }
+        .board-btn:active {
+            transform: scale(0.98);
         }
         .hidden-letter {
             display: none;
@@ -347,7 +352,7 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             pointer-events: none;
-            z-index: 10;
+            z-index: 9999; /* Makes sure dramatic fireworks show over everything */
         }
 
         .ambient-icon {
@@ -397,6 +402,7 @@
 
     <canvas id="deco-canvas"></canvas>
 
+    <!-- HEADER BANNER -->
     <header>
         <h1>Happy Birthday my Aniq! 🦇🎀</h1>
         <p>I love you more than too much</p>
@@ -404,6 +410,7 @@
 
     <div class="main-container">
 
+        <!-- SCATTERED BACKGROUND ICONS -->
         <div class="ambient-icon" style="top: 100px; left: 6%;">🦇</div>
         <div class="ambient-icon" style="top: 240px; left: 14%;">🦇</div>
         <div class="ambient-icon" style="top: 360px; left: 5%;">🐱</div>
@@ -411,6 +418,7 @@
         <div class="ambient-icon" style="top: 270px; right: 13%;">🦇</div>
         <div class="ambient-icon" style="top: 400px; right: 6%;">🦇</div>
 
+        <!-- ALWAYS AVAILABLE CSS HERO ARTWORK -->
         <div class="hero-graphic-center">
             <div class="mid-hearts">💖</div>
             <div class="css-character css-kitty">
@@ -428,6 +436,7 @@
             </div>
         </div>
 
+        <!-- SEPARATED TIMER BANNER -->
         <div class="countdown-wrapper">
             <div class="countdown-banner">
                 <span id="day-val" class="count-block">03</span> DAYS LEFT
@@ -436,6 +445,7 @@
             </div>
         </div>
 
+        <!-- PLACED BEFORE MEMORIES: BIRTHDAY LETTER SECTION -->
         <div class="mid-letter-container">
             <button class="board-btn" onclick="toggleLetter(event)">Open Letter</button>
             <div class="hidden-letter" id="birthday-letter">
@@ -446,6 +456,7 @@
             </div>
         </div>
 
+        <!-- MEMORY LANE SCRAPBOOK GALLERY -->
         <h2 class="memories-title">Our Favorite Memories ✨</h2>
         <div class="scrapbook-grid">
             <div class="polaroid p1">
@@ -472,6 +483,7 @@
 
     </div>
 
+    <!-- WISHES BOARD PANEL -->
     <div class="message-board-container">
         <div class="board-title">Birthday Wishes From Us</div>
         <div class="ticker-messages">
@@ -490,6 +502,7 @@
         </div>
     </div>
 
+    <!-- FOOTER CONTROLS -->
     <footer>
         <h3>Contact Me</h3>
         <div class="contact-form-mini">
@@ -532,13 +545,17 @@
                 letter.style.display = 'block';
                 letter.scrollIntoView({ behavior: 'smooth' });
                 
+                // Track button center perfectly relative to viewport layout
                 if(e) {
-                    createFireworkBurst(e.clientX, e.clientY);
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const burstX = rect.left + (rect.width / 2);
+                    const burstY = rect.top + (rect.height / 2);
+                    createFireworkBurst(burstX, burstY);
                 }
             }
         }
 
-        // CANVAS GRAPHICS
+        // CANVAS PARTICLES ENGINE
         const canvas = document.getElementById('deco-canvas');
         const ctx = canvas.getContext('2d');
         let shapes = [];
@@ -551,7 +568,7 @@
         window.addEventListener('resize', resize);
         resize();
 
-        // Background float items
+        // Standard background float elements
         class FallingShape {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -570,34 +587,49 @@
             }
         }
 
-        // DRAMATIC FIREWORK PARTICLE CLASS
+        // HIGH DRAMA MIXED FIREWORK PARTICLE CLASS
         class FireworkParticle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
                 
-                // Mix of Gotham/Theme emojis & classic festive ones
-                const pools = ['🦇', '🎀', '✨', '🎉', '💥', '💖'];
-                this.char = pools[Math.floor(Math.random() * pools.length)];
+                // Decide between decorative Theme Emojis or Festive Sparkle Orbs
+                this.isEmoji = Math.random() > 0.4;
                 
-                // Bigger dynamic sizing
-                this.size = Math.random() * 14 + 18; 
+                if (this.isEmoji) {
+                    const emojis = ['🦇', '🎀', '✨', '🎉', '💖', '💥'];
+                    this.char = emojis[Math.floor(Math.random() * emojis.length)];
+                    this.size = Math.random() * 16 + 22; // Massive bold emojis
+                } else {
+                    const sparks = ['#f4b4b9', '#b28a82', '#ffb6c1', '#ffffff', '#ffd700'];
+                    this.color = sparks[Math.floor(Math.random() * sparks.length)];
+                    this.radius = Math.random() * 4 + 3; // Vivid bright colorful sparks
+                }
                 
-                // Increased speed velocity for a dramatic outward burst
+                // High outward explosion velocity
                 const angle = Math.random() * Math.PI * 2;
-                const speed = Math.random() * 7 + 4; 
+                const speed = Math.random() * 9 + 5; 
                 this.speedX = Math.cos(angle) * speed;
                 this.speedY = Math.sin(angle) * speed;
                 
-                this.gravity = 0.12; // Natural gravity curve down
+                this.gravity = 0.15; // Beautiful arc drop down
                 this.alpha = 1;
-                this.decay = Math.random() * 0.012 + 0.008; // Slower decay so it lingers longer
+                this.decay = Math.random() * 0.01 + 0.008; // Lingers longer on page
             }
             draw() {
                 ctx.save();
                 ctx.globalAlpha = this.alpha;
-                ctx.font = `${this.size}px serif`;
-                ctx.fillText(this.char, this.x, this.y);
+                if (this.isEmoji) {
+                    ctx.font = `${this.size}px serif`;
+                    ctx.fillText(this.char, this.x, this.y);
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = this.color;
+                    ctx.fill();
+                }
                 ctx.restore();
             }
             update() {
@@ -609,8 +641,8 @@
         }
 
         function createFireworkBurst(clickX, clickY) {
-            // Explode 55 pieces simultaneously for a massive, dramatic impact!
-            for (let i = 0; i < 55; i++) {
+            // Shoots 75 epic interactive mixed sparks instantly
+            for (let i = 0; i < 75; i++) {
                 fireworks.push(new FireworkParticle(clickX, clickY));
             }
         }
@@ -618,6 +650,7 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+            // Background flow setup
             if (shapes.length < 25 && Math.random() < 0.04) {
                 shapes.push(new FallingShape());
             }
@@ -627,6 +660,7 @@
                 if (s.y < -20) shapes.splice(idx, 1);
             });
 
+            // Action firework renderer
             fireworks.forEach((p, idx) => {
                 p.update();
                 p.draw();
