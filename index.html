@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday my Aniq!</title>
-    <!-- Cute, rounded font for a warmer, much livelier aesthetic -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Caveat:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -102,9 +101,9 @@
         .no-btn {
             background-color: var(--gotham-blue);
             color: var(--text-muted);
-            position: relative; /* Starts relative to sit side-by-side naturally */
+            position: relative;
             z-index: 10001;
-            transition: left 0.15s ease-out, top 0.15s ease-out; /* Smooth slide escape */
+            transition: left 0.15s ease-out, top 0.15s ease-out;
         }
 
         /* MAIN CONTENT (HIDDEN INITIAL OVERFLOW) */
@@ -147,15 +146,21 @@
             position: relative;
         }
 
-        /* MAIN HERO IMAGE CONTAINER (BOUNCY & FLOATY) */
+        /* CLICKABLE HERO GRAPHIC CONTAINER */
         .hero-graphic-center {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             margin: 40px auto;
             position: relative;
             max-width: 320px;
             animation: gentleFloat 4s ease-in-out infinite;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            outline: none;
         }
 
         .hero-image {
@@ -174,9 +179,24 @@
         
         .hero-graphic-center:hover .hero-image {
             transform: scale(1.05) rotate(1deg);
+            border-color: var(--kitty-pink);
         }
 
-        /* Floating Hearts Burst above them */
+        /* Hint text underneath image on hover */
+        .click-hint {
+            color: var(--gotham-dark);
+            font-size: 0.9rem;
+            margin-top: 12px;
+            font-weight: 600;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .hero-graphic-center:hover .click-hint {
+            opacity: 1;
+            color: var(--kitty-pink);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         .mid-hearts {
             position: absolute;
             top: -30px;
@@ -184,6 +204,54 @@
             animation: heartPulse 1.2s infinite ease-in-out;
             z-index: 5;
             text-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* SUB-PAGE OVERLAY FOR THE SECOND SECRET LETTER */
+        #secret-subpage {
+            position: fixed;
+            top: 100%; /* Hidden off-screen at first */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gotham-dark);
+            z-index: 10005;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: top 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+            overflow-y: auto;
+        }
+
+        #secret-subpage.active {
+            top: 0; /* Slides up beautifully */
+        }
+
+        .secret-letter-box {
+            background: var(--soft-white);
+            border: 4px dashed var(--kitty-pink);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+            max-width: 550px;
+            width: 100%;
+            text-align: left;
+            position: relative;
+        }
+
+        .secret-letter-box h2 {
+            margin-top: 0;
+            color: var(--gotham-dark);
+            font-size: 1.6rem;
+            border-bottom: 2px dashed var(--rose-gold);
+            padding-bottom: 10px;
+        }
+
+        .secret-letter-box p {
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: #333;
         }
 
         /* COUNTDOWN BANNER CONTAINER */
@@ -196,7 +264,7 @@
         .countdown-banner {
             background-color: var(--gotham-dark);
             border: 2px solid var(--gotham-blue);
-            border-radius: 50px; /* Pillow shape */
+            border-radius: 50px;
             padding: 10px 28px;
             display: inline-flex;
             align-items: center;
@@ -449,7 +517,6 @@
 </head>
 <body>
 
-    <!-- SURPRISE GATEWAY SPLASH SCREEN -->
     <div id="surprise-overlay">
         <div class="surprise-box">
             <div class="surprise-title">I have a surprise for you, <br>do you wanna see it? 🦇🎀</div>
@@ -460,7 +527,23 @@
         </div>
     </div>
 
-    <!-- MAIN BIRTHDAY WEBSITE WRAPPER -->
+    <div id="secret-subpage">
+        <div class="secret-letter-box">
+            <h2>PS: I Have Another Secret For You... 🤫🎀</h2>
+            <p>Hi habibi again! You found the secret space hidden inside our picture! ❤️</p>
+            <p>I just wanted to add an extra little note here to remind you how much you truly mean to me. Every single day spent with you feels like an adventure, and honestly, you make my world a million times brighter. Thank you for being the most supportive, wonderful, and amazing boyfriend I could ever ask for.</p>
+            <p>You're stuck with me forever, deal? 😉🖤</p>
+            
+            <p style="text-align: right; font-family: 'Caveat', cursive; font-size: 1.6rem; color: var(--rose-gold); margin-top: 30px;">
+                <strong>Forever Yours, Yumna 🎀</strong>
+            </p>
+            
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="board-btn" onclick="closeSecretPage()" style="padding: 10px 30px; font-size: 0.9rem;">🖤 Go Back</button>
+            </div>
+        </div>
+    </div>
+
     <div class="main-wrapper-content" id="main-content-wrapper">
         <canvas id="deco-canvas"></canvas>
 
@@ -478,10 +561,11 @@
             <div class="ambient-icon" style="top: 270px; right: 13%;">🦇</div>
             <div class="ambient-icon" style="top: 400px; right: 6%;">🐱</div>
 
-            <div class="hero-graphic-center">
+            <button class="hero-graphic-center" onclick="openSecretPage(event)">
                 <div class="mid-hearts">💖</div>
                 <img src="main-pic.jpg" alt="Hello Kitty and Batman Kissing" class="hero-image">
-            </div>
+                <div class="click-hint">✨ Tap for a secret message... ✨</div>
+            </button>
 
             <div class="countdown-wrapper">
                 <div class="countdown-banner">
@@ -562,7 +646,6 @@
         const noBtn = document.getElementById('runaway-no-btn');
 
         function moveNoButton() {
-            // Dynamically change layout behavior to fixed right as interaction triggers
             if (noBtn.style.position !== 'fixed') {
                 noBtn.style.position = 'fixed';
             }
@@ -570,11 +653,9 @@
             const btnWidth = noBtn.offsetWidth;
             const btnHeight = noBtn.offsetHeight;
 
-            // Calculate safe viewport limits to keep the button fully on screen
             const maxX = window.innerWidth - btnWidth - 20;
             const maxY = window.innerHeight - btnHeight - 20;
 
-            // Generate active random coordinates inside safe padding thresholds
             const randomX = Math.max(20, Math.floor(Math.random() * maxX));
             const randomY = Math.max(20, Math.floor(Math.random() * maxY));
 
@@ -582,11 +663,10 @@
             noBtn.style.top = randomY + 'px';
         }
 
-        // Run away whenever user cursor tries to touch or enter it
         noBtn.addEventListener('mouseenter', moveNoButton);
         noBtn.addEventListener('mouseover', moveNoButton);
         noBtn.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Stop mobile selection zoom flashes
+            e.preventDefault();
             moveNoButton();
         });
         noBtn.addEventListener('click', function(e) {
@@ -599,7 +679,6 @@
             const overlay = document.getElementById('surprise-overlay');
             const mainContent = document.getElementById('main-content-wrapper');
             
-            // Fire bursts of emojis at the click coordinates before removing overlay
             if(e) {
                 createFireworkBurst(e.clientX, e.clientY);
                 setTimeout(() => {
@@ -607,16 +686,25 @@
                 }, 200);
             }
 
-            // Smooth transition
             overlay.style.opacity = '0';
             overlay.style.visibility = 'hidden';
-            
             mainContent.classList.add('revealed');
             
-            // Trigger target layout updates
             setTimeout(() => {
                 overlay.remove();
             }, 800);
+        }
+
+        // SUBPAGE TOGGLE FUNCTIONS
+        function openSecretPage(e) {
+            document.getElementById('secret-subpage').classList.add('active');
+            if(e) {
+                createFireworkBurst(e.clientX || window.innerWidth/2, e.clientY || window.innerHeight/2);
+            }
+        }
+
+        function closeSecretPage() {
+            document.getElementById('secret-subpage').classList.remove('active');
         }
 
         // TARGET DATE COUNTDOWN LOGIC
